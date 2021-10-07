@@ -25,7 +25,6 @@ namespace Washyn.Web
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            // base.ConfigureServices(context);
 
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
@@ -35,8 +34,6 @@ namespace Washyn.Web
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
-            // base.OnApplicationInitialization(context);
-
             var app = context.GetApplicationBuilder();
             var env = context.GetEnvironment();
 

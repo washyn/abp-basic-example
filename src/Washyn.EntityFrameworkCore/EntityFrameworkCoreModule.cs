@@ -11,8 +11,6 @@ namespace Washyn.EntityFrameworkCore
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            // base.ConfigureServices(context);
-
             context.Services.AddAbpDbContext<EntityFrameworkCoreDbContext>(options =>
             {
                 /* Remove "includeAllEntities: true" to create

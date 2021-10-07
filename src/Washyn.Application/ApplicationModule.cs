@@ -12,7 +12,6 @@ namespace Washyn.Application
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            // base.ConfigureServices(context);
             Configure<AbpAutoMapperOptions>(options =>
             {
                 options.AddMaps<ApplicationModule>();
