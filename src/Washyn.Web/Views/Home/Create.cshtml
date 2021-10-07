@@ -1,0 +1,14 @@
+﻿@model Washyn.Application.PruebaDto
+
+@{
+    // Layout = null;
+}
+
+<form method="post" asp-controller="Home" asp-action="Create">
+    <div class="form-group">
+        <label for="" asp-for="Nombre">Prueba</label>
+        <input class="form-control" type="text" asp-for="Nombre">
+        <span asp-validation-for="Nombre"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
