@@ -1,11 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling
+@using Washyn.Web.Bundling
+@using Volo.Abp.AspNetCore.Mvc.UI.Packages.Core
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Washyn.Web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    
+    @* <abp-style-bundle name="@CustomBundles.Styles.Global" /> *@
+    @* <abp-style-bundle name="@StandardBundles.Styles.Global" /> *@
+    
+    <abp-style-bundle name="StylesBundle">
+        @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+        @* <link rel="stylesheet" href="~/css/site.css" /> *@
+
+        <abp-style src="/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <abp-style src="/css/site.css" />
+        <abp-style type="@(typeof(CoreStyleContributor))"></abp-style>
+    </abp-style-bundle>
+    
 </head>
 <body>
     <header>
@@ -43,13 +57,21 @@
             &copy; 2021 - Washyn.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
-    @* TODO: add code for generate proxy scripts *@
-    @* <script src="~/Abp/ApplicationConfigurationScript"></script> *@
-    @* <script src="~/Abp/ServiceProxyScript"></script> *@
+
+    @* <abp-script-bundle name="@CustomBundles.Scripts.Global" /> *@
+    @* <abp-script-bundle name="@StandardBundles.Scripts.Global" /> *@
+
+<abp-script-bundle name="ScriptBundle">
+    <abp-script src="/lib/jquery/dist/jquery.min.js"></abp-script>
+    <abp-script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></abp-script>
+    <abp-script type="@(typeof(CoreScriptContributor))"></abp-script>
+    <abp-script src="/js/site.js"></abp-script>
+</abp-script-bundle>
+
+
+    <script src="~/Abp/ApplicationConfigurationScript"></script>
+    <script src="~/Abp/ServiceProxyScript"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
