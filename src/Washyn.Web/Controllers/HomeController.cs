@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Domain.Repositories;
 using Washyn.Application;
 using Washyn.Domain;
@@ -13,7 +14,7 @@ using Washyn.Web.Models;
 
 namespace Washyn.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AbpController
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IRepository<Prueba, long> _pruebaRepository;
