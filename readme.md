@@ -1,6 +1,6 @@
 # Abp as aspnetboilerplate, with 4 layers
 
-This is one example of use abp framework as traditional way(aspnetboilerplate) with 4 layers.
+This is one soluction create fron scractc about example of use abp framework as traditional way(aspnetboilerplate) with 4 layers.
 
 
 
@@ -10,9 +10,10 @@ This is one example of use abp framework as traditional way(aspnetboilerplate) w
 
 # TODO
 - Add localization only for test, how works
-- Disable proxy generation
+- Disable proxy generation, for all by default and only add this with RemoteService decorator.
 
-
+# FIX 
+- when call remote service error, add jquery extensions for use abp.ajax, check where is located this function.
 
 
 

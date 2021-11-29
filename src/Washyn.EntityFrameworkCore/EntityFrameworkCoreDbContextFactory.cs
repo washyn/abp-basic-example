@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Washyn.EntityFrameworkCore
 {
+    // this used only for execute migration, test using decorator in DbContex
     public class EntityFrameworkCoreDbContextFactory : IDesignTimeDbContextFactory<EntityFrameworkCoreDbContext>
     {
         private static IConfigurationRoot BuildConfiguration()
