@@ -1,4 +1,5 @@
-﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Packages.JQuery
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling
 @using Washyn.Web.Bundling
 @using Volo.Abp.AspNetCore.Mvc.UI.Packages.Core
 <!DOCTYPE html>
@@ -63,7 +64,8 @@
     @* <abp-script-bundle name="@StandardBundles.Scripts.Global" /> *@
 
 <abp-script-bundle name="ScriptBundle">
-    <abp-script src="/lib/jquery/dist/jquery.min.js"></abp-script>
+    <abp-script type="@(typeof(JQueryScriptContributor))"></abp-script>
+    @* <abp-script src="/lib/jquery/dist/jquery.min.js"></abp-script> *@
     <abp-script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></abp-script>
     <abp-script type="@(typeof(CoreScriptContributor))"></abp-script>
     <abp-script src="/js/site.js"></abp-script>

@@ -11,13 +11,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Washyn.Application", "src\W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Washyn.EntityFrameworkCore", "src\Washyn.EntityFrameworkCore\Washyn.EntityFrameworkCore.csproj", "{A6DD587F-517E-4A02-B28C-B4E6AD52CD14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Washyn.Web", "src\Washyn.Web\Washyn.Web.csproj", "{845A75BA-EBB1-4B06-B7C2-2CE935E460A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Washyn.Web", "src\Washyn.Web\Washyn.Web.csproj", "{845A75BA-EBB1-4B06-B7C2-2CE935E460A1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7CDA1286-2B50-442E-8C39-5B3BD794CF9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Washyn.Tests", "test\Washyn.Tests\Washyn.Tests.csproj", "{8BE1578B-0F7D-4CF1-9B97-5B00D7C2E6A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Washyn.Tests", "test\Washyn.Tests\Washyn.Tests.csproj", "{8BE1578B-0F7D-4CF1-9B97-5B00D7C2E6A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Washyn.Web.Tests", "test\Washyn.Web.Tests\Washyn.Web.Tests.csproj", "{B6EE18C8-EAEA-401C-A594-AED71169C343}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Washyn.Web.Tests", "test\Washyn.Web.Tests\Washyn.Web.Tests.csproj", "{B6EE18C8-EAEA-401C-A594-AED71169C343}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{08251E33-6D9E-4626-87C3-8DF05E70354C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

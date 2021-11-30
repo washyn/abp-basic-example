@@ -2,19 +2,32 @@
 # yarn lockfile v1
 
 
-"@abp/core@^4.4.0":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@abp/core/-/core-4.4.3.tgz#fc79a2eebf37a61a6cc05287b722750000f38522"
-  integrity sha512-gQ2rNyj1MpYCfLTg7Id/20AH4dqs0XIt/n+WqlgeGoYvEpAm4lakHWL7mxZaDQ+iMI/lVVrBhuzwuQv7xKpEIQ==
+"@abp/core@^4.4.2", "@abp/core@~4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@abp/core/-/core-4.4.4.tgz#e157da92b884d7d9a1e3ba50f65be42c60047d78"
+  integrity sha512-t3Mu7Bvs0o439CVSx9uxBJ+yTFrt2Pyep9/6Vh6Su+b4aoZeQt6ZTKWeJqUVZ7Y/LMt+AbJ/dtbFHvhV8yVuXg==
   dependencies:
-    "@abp/utils" "^4.4.3"
+    "@abp/utils" "~4.4.4"
 
-"@abp/utils@^4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@abp/utils/-/utils-4.4.3.tgz#5d6939be5463adaa938357d74d1a35fed21b0115"
-  integrity sha512-B2E89fhM7vKDz9He6EeNc9P5RVYThiBLpTkKvJTeXG+DJtrP2ZbEICe1fcDA48wLFokXXKgx/SjoJlMvObhilQ==
+"@abp/jquery@^4.4.2":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@abp/jquery/-/jquery-4.4.4.tgz#cbf5f99562ad5f01c41aa61704b0136c4ad68594"
+  integrity sha512-0fltJprq9DMHHWeTAN7i8kAcod5czQ48LdjeIY3wuLDWkGgMVcfarECQ9cu7QekMryB0HFdrUjMJHIhxqzxc3Q==
+  dependencies:
+    "@abp/core" "~4.4.4"
+    jquery "~3.6.0"
+
+"@abp/utils@~4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@abp/utils/-/utils-4.4.4.tgz#0bd79fa4635224fcae7ff61224a8c54266db73bf"
+  integrity sha512-h8Nt2OPqi8EiXKAuvJIpBlCHhavL7BHr+ntJXY6yM4aCdcQtJdSAgNmh0skzEGnf1hZxrYOugtAz4Pk1WNjv/g==
   dependencies:
     just-compare "^1.3.0"
+
+jquery@~3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
+  integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
 
 just-compare@^1.3.0:
   version "1.4.0"

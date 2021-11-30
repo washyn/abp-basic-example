@@ -58,7 +58,7 @@ namespace Washyn.Web
                 options.IsEnabled = false; //Disables the auditing system
             });
 
-            
+
             // context.Services.AddHttpClientProxies(
             //     typeof(ApplicationModule).Assembly,
             //     asDefaultServices: false
@@ -69,7 +69,7 @@ namespace Washyn.Web
             //     options.EnabledModules.Add("identity");
             // });
 
-            
+
             Configure<AbpBundlingOptions>(options =>
             {
                 // options
