@@ -45,7 +45,7 @@ namespace Washyn.Web
                 options.FileSets.AddEmbedded<WebModule>("Washyn.Web");
             });
 
-            // for generate proxy
+            // for generate proxy for app services
             Configure<AbpAspNetCoreMvcOptions>(options =>
             {
                 options
