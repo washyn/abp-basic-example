@@ -396,3 +396,10 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio
+
+
+
+# Use abp install-libs to restore.
+**/wwwroot/libs/*
+**/wwwroot/dist/*
+**/wwwroot/plugins/*

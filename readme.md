@@ -18,6 +18,15 @@ This is one soluction create fron scractc about example of use abp framework as 
 
 
 
+Theme shared contains all basic js libs, basic theme add layout.js and layout.css file for fix some
+
+
+Abp js library dependency 
+
+    @abp/jquery
+        @abp/core
+        jquery
+
 
 ---
 

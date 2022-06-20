@@ -26,7 +26,7 @@ namespace Washyn.Web
         typeof(ApplicationModule),
         typeof(EntityFrameworkCoreModule),
         typeof(AbpAutofacModule),
-        typeof(AbpHttpClientModule),
+        //typeof(AbpHttpClientModule),
         typeof(AbpAspNetCoreMvcModule),
         typeof(AbpAspNetCoreMvcUiBundlingModule),
         typeof(AbpAspNetCoreMvcUiThemeSharedModule))]
