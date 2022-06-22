@@ -1,13 +1,13 @@
 ﻿using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.Packages.Core;
-using Volo.Abp.AspNetCore.Mvc.UI.Packages.JQuery;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
 using Volo.Abp.Modularity;
 
 namespace Washyn.Web.Bundling
 {
-    // [DependsOn(
-    //     typeof(CoreScriptContributor)
-    // )]
+    [DependsOn(
+        // typeof(CoreScriptContributor)
+        typeof(SharedThemeGlobalScriptContributor)
+    )]
     public class ScriptContributor : BundleContributor
     {
         

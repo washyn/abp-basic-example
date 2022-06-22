@@ -66,5 +66,10 @@ namespace Washyn.Web.Controllers
             });
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult AdminLte()
+        {
+            return View();
+        }
     }
 }

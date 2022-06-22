@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Volo.Abp;
 using Volo.Abp.AspNetCore;
@@ -12,6 +13,7 @@ using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
+using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
 using Volo.Abp.Http.Client;
@@ -19,17 +21,19 @@ using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
 using Washyn.Application;
 using Washyn.EntityFrameworkCore;
+using Washyn.Web.Services;
 
 namespace Washyn.Web
 {
     [DependsOn(
         typeof(ApplicationModule),
         typeof(EntityFrameworkCoreModule),
-        typeof(AbpAutofacModule),
+
         //typeof(AbpHttpClientModule),
-        typeof(AbpAspNetCoreMvcModule),
+        typeof(AbpAspNetCoreMvcModule) ,
         typeof(AbpAspNetCoreMvcUiBundlingModule),
-        typeof(AbpAspNetCoreMvcUiThemeSharedModule))]
+        typeof(AbpAspNetCoreMvcUiThemeSharedModule)
+        )]
     [DependsOn(typeof(AbpAutofacModule))]
     public class WebModule : AbpModule
     {
@@ -39,6 +43,7 @@ namespace Washyn.Web
             var configuration = context.Services.GetConfiguration();
 
             context.Services.AddControllersWithViews();
+            context.Services.AddRazorPages();
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
@@ -120,7 +125,14 @@ namespace Washyn.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
+        }
+
+        public override void PostConfigureServices(ServiceConfigurationContext context)
+        {
+            base.PostConfigureServices(context);
+            context.Services.Replace(ServiceDescriptor.Transient<IThemeManager, ThemeManager>());
         }
     }
 }

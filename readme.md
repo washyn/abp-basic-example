@@ -6,18 +6,21 @@ This is one soluction create fron scractc about example of use abp framework as 
 
 # Done
 - Add bundle generation
-- create proxy scripts
+- Create proxy scripts
 
 # TODO
 - Add localization only for test, how works
 - Disable proxy generation, for all by default and only add this with RemoteService decorator.
+- Add front libs(bundle)
+- Add tag helpers
+- Add crud with razor pages and theme admin lte.
 
 # FIX 
 - when call remote service error, add jquery extensions for use abp.ajax, check where is located this function.
 
 
 
-
+# Notes
 Theme shared contains all basic js libs, basic theme add layout.js and layout.css file for fix some
 
 
@@ -26,7 +29,6 @@ Abp js library dependency
     @abp/jquery
         @abp/core
         jquery
-
 
 ---
 
