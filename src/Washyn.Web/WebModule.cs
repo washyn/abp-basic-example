@@ -43,7 +43,7 @@ namespace Washyn.Web
             var configuration = context.Services.GetConfiguration();
 
             context.Services.AddControllersWithViews();
-            context.Services.AddRazorPages();
+            // context.Services.AddRazorPages();
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
@@ -125,7 +125,7 @@ namespace Washyn.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                // endpoints.MapRazorPages();
             });
         }
 
