@@ -1,4 +1,10 @@
-﻿@{
+﻿@using Washyn.Web.Bundling
+@using Washyn.Web.Views.Shared.Components.Navbar
+@using Washyn.Web.Views.Shared.Components.MainSidebarContainer
+@using Washyn.Web.Views.Shared.Components.ControlSidebar
+@using Washyn.Web.Views.Shared.Components.Footer
+@using Volo.Abp.AspNetCore.Mvc.UI.Bundling.TagHelpers
+@{
   Layout = null;
 }
 <!DOCTYPE html>
@@ -18,6 +24,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+  
+  @* TODO: fix this order and create admin lte theme... *@
+  <abp-style-bundle>
+    <abp-style type="@typeof(StyleContributor)"></abp-style>
+  </abp-style-bundle>
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -120,6 +132,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
+
+<abp-script-bundle>
+  <abp-script type="@typeof(ScriptContributor)"></abp-script>
+</abp-script-bundle>
 
 <!-- jQuery -->
 <script src="~/plugins/jquery/jquery.min.js"></script>

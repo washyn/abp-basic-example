@@ -21,6 +21,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
 using Washyn.Application;
 using Washyn.EntityFrameworkCore;
+using Washyn.Web.Bundling;
 using Washyn.Web.Services;
 
 namespace Washyn.Web
@@ -79,7 +80,7 @@ namespace Washyn.Web
             {
                 // options
                 //     .StyleBundles
-                //     .Add(BasicThemeBundles.Styles.Global, bundle =>
+                //     .Add(CustomBundles.Styles.Global, bundle =>
                 //     {
                 //         bundle
                 //             .AddBaseBundles(StandardBundles.Styles.Global)
@@ -88,7 +89,7 @@ namespace Washyn.Web
                 //
                 // options
                 //     .ScriptBundles
-                //     .Add(BasicThemeBundles.Scripts.Global, bundle =>
+                //     .Add(CustomBundles.Scripts.Global, bundle =>
                 //     {
                 //         bundle
                 //             .AddBaseBundles(StandardBundles.Scripts.Global)
