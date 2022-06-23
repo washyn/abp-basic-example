@@ -10,6 +10,11 @@ namespace Washyn.Web.Bundling
     )]
     public class StyleContributor : BundleContributor
     {
-        
+        public override void ConfigureBundle(BundleConfigurationContext context)
+        {
+            base.ConfigureBundle(context);
+            // Check how this works best
+            // context.Files.Remove("/libs/bootstrap/css/bootstrap.css");
+        }
     }
 }

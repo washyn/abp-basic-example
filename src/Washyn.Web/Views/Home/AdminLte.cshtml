@@ -4,6 +4,8 @@
 @using Washyn.Web.Views.Shared.Components.ControlSidebar
 @using Washyn.Web.Views.Shared.Components.Footer
 @using Volo.Abp.AspNetCore.Mvc.UI.Bundling.TagHelpers
+@using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetScripts
+@using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetStyles
 @{
   Layout = null;
 }
@@ -18,17 +20,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Starter</title>
 
+  
+  <!-- bundles -->
+  TODO: check how to make in another example admin lte theme
+    @* TODO: fix this order and create admin lte theme... *@
+    <abp-style-bundle>
+      <abp-style type="@typeof(StyleContributor)"></abp-style>
+    </abp-style-bundle>
+  
+  @* Admin lte css libs *@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+  @* already aded with basic style *@
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+  @* <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css"> *@
   
-  @* TODO: fix this order and create admin lte theme... *@
-  @* <abp-style-bundle> *@
-  @*   <abp-style type="@typeof(StyleContributor)"></abp-style> *@
-  @* </abp-style-bundle> *@
+  @* this already include boostrap *@
+  <!-- Theme style -->
+  <link rel="stylesheet" href="~/dist/css/adminlte.css">
+  
+  @await Component.InvokeAsync(typeof(WidgetStylesViewComponent))
+  @await RenderSectionAsync("styles", false);
+
   
 </head>
 <body class="hold-transition sidebar-mini">
@@ -133,15 +147,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 
-@* <abp-script-bundle> *@
-@*   <abp-script type="@typeof(ScriptContributor)"></abp-script> *@
-@* </abp-script-bundle> *@
+<!-- Script bundles -->
+<abp-script-bundle>
+  <abp-script type="@typeof(ScriptContributor)"></abp-script>
+</abp-script-bundle>
 
+@* theme libs *@
+@* already aded *@
 <!-- jQuery -->
-<script src="~/plugins/jquery/jquery.min.js"></script>
+@* <script src="~/plugins/jquery/jquery.min.js"></script> *@
+
+@* already aded *@
 <!-- Bootstrap 4 -->
-<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+@* <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> *@
 <!-- AdminLTE App -->
 <script src="~/dist/js/adminlte.min.js"></script>
+<script src="~/Abp/ApplicationConfigurationScript"></script>
+<script src="~/Abp/ServiceProxyScript"></script>
+@await RenderSectionAsync("scripts", false)
+@await Component.InvokeAsync(typeof(WidgetScriptsViewComponent))
+
 </body>
 </html>
