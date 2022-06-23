@@ -26,9 +26,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
   
   @* TODO: fix this order and create admin lte theme... *@
-  <abp-style-bundle>
-    <abp-style type="@typeof(StyleContributor)"></abp-style>
-  </abp-style-bundle>
+  @* <abp-style-bundle> *@
+  @*   <abp-style type="@typeof(StyleContributor)"></abp-style> *@
+  @* </abp-style-bundle> *@
   
 </head>
 <body class="hold-transition sidebar-mini">
@@ -133,9 +133,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 
-<abp-script-bundle>
-  <abp-script type="@typeof(ScriptContributor)"></abp-script>
-</abp-script-bundle>
+@* <abp-script-bundle> *@
+@*   <abp-script type="@typeof(ScriptContributor)"></abp-script> *@
+@* </abp-script-bundle> *@
 
 <!-- jQuery -->
 <script src="~/plugins/jquery/jquery.min.js"></script>
