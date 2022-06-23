@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
 using Washyn.Application;
@@ -34,6 +35,8 @@ namespace Washyn.Web.Pages.Crud
 
     public class CreateViewModel
     {
+        
+        [Required]
         public string Nombre { get; set; }
     }
 }

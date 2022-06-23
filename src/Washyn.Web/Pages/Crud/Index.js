@@ -18,6 +18,7 @@ $(function () {
         columnDefs: [
             {
                 rowAction: {
+                    // title: "Opciones",
                     items:
                         [
                             {
