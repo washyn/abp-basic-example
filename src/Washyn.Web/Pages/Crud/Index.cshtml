@@ -1,0 +1,66 @@
+﻿@page
+@model Washyn.Web.Pages.Crud.Index
+
+@{
+    // Layout = null;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Crud/Index.js" />
+}
+@section styles
+{
+    @* <abp-style src="/Pages/Academic/Enrollment/index.css"/> *@
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">
+          Starter Page CRUD page
+        </h1>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+          <abp-card>
+            <abp-card-header>
+                <abp-row>
+                    <abp-column size-md="_6">
+                        <abp-card-title>
+                            Crud page ...
+                        </abp-card-title>
+                    </abp-column>
+                    <abp-column size-md="_6" class="text-end">
+        			    @* @if (await Authorization.IsGrantedAsync(SchoolPermissions.Enrollment.Create)) *@
+               @*          { *@
+                        <abp-button id="NewButton"
+                                    text="Crear nuevo"
+                                    icon="plus"
+                                    size="Small"
+                                    button-type="Primary" />
+                        @* } *@
+                    </abp-column>
+                </abp-row>
+            </abp-card-header>
+            <abp-card-body>
+                <abp-table striped-rows="true" id="Table" class="nowrap"/>
+            </abp-card-body>
+        </abp-card>
+      </div>
+      <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
