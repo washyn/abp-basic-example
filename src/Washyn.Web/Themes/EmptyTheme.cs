@@ -13,14 +13,14 @@ namespace Washyn.Web.Themes
             switch (name)
             {
                 case StandardLayouts.Application:
-                    return "~/Themes/Basic/Layouts/Application.cshtml";
+                    return "~/Themes/Empty/Layouts/Application.cshtml";
                 case StandardLayouts.Account:
-                    return "~/Themes/Basic/Layouts/Account.cshtml";
+                    return "~/Themes/Empty/Layouts/Account.cshtml";
                 case StandardLayouts.Empty:
-                    return "~/Themes/Basic/Layouts/Empty.cshtml";
+                    return "~/Themes/Empty/Layouts/Empty.cshtml";
                 default:
                     return fallbackToDefault
-                        ? "~/Themes/Basic/Layouts/Application.cshtml"
+                        ? "~/Themes/Empty/Layouts/Application.cshtml"
                         : null;
             }
         }
