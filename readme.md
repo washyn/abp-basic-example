@@ -32,7 +32,7 @@ Abp js library dependency
 
 ---
 
-
+<!-- 
 
 ### Ejemplo de agregar basic bundling and minify.
 
@@ -65,4 +65,4 @@ Pasos
     <abp-style src="/css/site.css" />
     <abp-style type="@(typeof(CoreStyleContributor))"></abp-style>
 </abp-style-bundle>
-```
+``` -->

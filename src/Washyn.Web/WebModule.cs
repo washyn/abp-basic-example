@@ -22,7 +22,8 @@ using Volo.Abp.VirtualFileSystem;
 using Washyn.Application;
 using Washyn.EntityFrameworkCore;
 using Washyn.Web.Bundling;
-using Washyn.Web.Services;
+// using Washyn.Web.Services;
+using Washyn.Web.Themes;
 
 namespace Washyn.Web
 {
@@ -44,7 +45,7 @@ namespace Washyn.Web
             var configuration = context.Services.GetConfiguration();
 
             context.Services.AddControllersWithViews();
-            // context.Services.AddRazorPages();
+            context.Services.AddRazorPages();
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
@@ -96,6 +97,8 @@ namespace Washyn.Web
                 //             .AddContributors(typeof(BasicThemeGlobalScriptContributor));
                 //     });
             });
+            
+            ConfigureTheme(context);
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -126,14 +129,58 @@ namespace Washyn.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                // endpoints.MapRazorPages();
+                endpoints.MapRazorPages();
             });
         }
 
         public override void PostConfigureServices(ServiceConfigurationContext context)
         {
             base.PostConfigureServices(context);
-            context.Services.Replace(ServiceDescriptor.Transient<IThemeManager, ThemeManager>());
+            // context.Services.Replace(ServiceDescriptor.Transient<IThemeManager, ThemeManager>());
+        }
+
+        public void ConfigureTheme(ServiceConfigurationContext context)
+        {
+            Configure<AbpThemingOptions>(options =>
+            {
+                options.Themes.Add<EmptyTheme>();
+
+                if (options.DefaultThemeName == null)
+                {
+                    options.DefaultThemeName = EmptyTheme.Name;
+                }
+            });
+
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                // options.FileSets.AddEmbedded<AbpAspNetCoreMvcUiBasicThemeModule>("Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic");
+            });
+
+            // Configure<AbpToolbarOptions>(options =>
+            // {
+            //     options.Contributors.Add(new BasicThemeMainTopToolbarContributor());
+            // });
+
+            // Configure<AbpBundlingOptions>(options =>
+            // {
+            //     options
+            //         .StyleBundles
+            //         .Add(BasicThemeBundles.Styles.Global, bundle =>
+            //         {
+            //             bundle
+            //                 .AddBaseBundles(StandardBundles.Styles.Global)
+            //                 .AddContributors(typeof(BasicThemeGlobalStyleContributor));
+            //         });
+            //
+            //     options
+            //         .ScriptBundles
+            //         .Add(BasicThemeBundles.Scripts.Global, bundle =>
+            //         {
+            //             bundle
+            //                 .AddBaseBundles(StandardBundles.Scripts.Global)
+            //                 .AddContributors(typeof(BasicThemeGlobalScriptContributor));
+            //         });
+            // });
         }
     }
 }
