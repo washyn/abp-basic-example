@@ -12,6 +12,7 @@ using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
+using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
 using Volo.Abp.Http.Client;
@@ -31,6 +32,7 @@ namespace Washyn.Web
         typeof(AbpAspNetCoreMvcUiBundlingModule),
         typeof(AbpAspNetCoreMvcUiThemeSharedModule))]
     [DependsOn(typeof(AbpAutofacModule))]
+    [DependsOn(typeof(AbpAspNetCoreSerilogModule))]
     public class WebModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
@@ -108,13 +110,19 @@ namespace Washyn.Web
                 app.UseHsts();
             }
 
+            // app.UseAbpRequestLocalization();
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
-
+            // app.UseAuthentication();
+            // app.UseUnitOfWork();
+            // app.UseAuthorization();
+            // app.UseAuditing(); ??? midleware de audit, escribe en el logger o ayuda a en logs de base de datos 
+            app.UseAbpSerilogEnrichers();
+            
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
