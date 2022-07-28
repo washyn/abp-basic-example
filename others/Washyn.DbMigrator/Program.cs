@@ -1,11 +1,12 @@
-﻿using System.IO;
-using System.Threading.Tasks;
+﻿
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
+using System.Threading.Tasks;
 
 namespace Washyn.DbMigrator
 {
@@ -15,10 +16,10 @@ namespace Washyn.DbMigrator
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                .MinimumLevel.Override("Volo.Abp", LogEventLevel.Warning)
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .MinimumLevel.Override("Volo.Abp", LogEventLevel.Information)
 #if DEBUG
-                .MinimumLevel.Override("Washyn", LogEventLevel.Debug)
+                .MinimumLevel.Override("Washyn", LogEventLevel.Information)
 #else
                 .MinimumLevel.Override("Washyn", LogEventLevel.Information)
 #endif
