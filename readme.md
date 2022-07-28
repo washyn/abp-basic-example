@@ -66,9 +66,13 @@ Pasos
 ``` -->
 
 # TODO:
-- Agregar crud basico
-- Agregar data seeder
+
 - Agregar Ejemplo de domain
 - Agregar ejemplos de test en todas las capas
 - Agregar las librerias base de abp para poder probar
 - Add json secret file
+
+
+# DONE
+- Agregar data seeder
+- Agregar crud basico
