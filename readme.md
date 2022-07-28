@@ -31,7 +31,7 @@ Abp js library dependency
 ---
 
 
-
+<!-- 
 ### Ejemplo de agregar basic bundling and minify.
 
 En este post se muestra como agregar, el bundling/minify, cuando se desarrolla en web, generalmente se tiene varios js y css, los cuales se consumiran desde el navegador del cliente. tener varios js y css puede ralentizar la carga del sitio web, en el mundo de node js se puede usar webpack o paquetes para juntar y minificar todos los archivocs css y js para que la carga de la pagina sea mas rapida.
@@ -63,4 +63,11 @@ Pasos
     <abp-style src="/css/site.css" />
     <abp-style type="@(typeof(CoreStyleContributor))"></abp-style>
 </abp-style-bundle>
-```
+``` -->
+
+# TODO:
+- Agregar crud basico
+- Agregar data seeder
+- Agregar Ejemplo de domain
+- Agregar ejemplos de test en todas las capas
+- Agregar las librerias base de abp para poder probar
