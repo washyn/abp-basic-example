@@ -71,3 +71,4 @@ Pasos
 - Agregar Ejemplo de domain
 - Agregar ejemplos de test en todas las capas
 - Agregar las librerias base de abp para poder probar
+- Add json secret file
