@@ -14,6 +14,8 @@ $(function () {
         autoWidth: false,
         scrollCollapse: true,
         order: [[0, "asc"]],
+        // info: false,
+        lengthChange: false,
         ajax: abp.libs.datatables.createAjax(service.getList),
         columnDefs: [
             {

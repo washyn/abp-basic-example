@@ -38,17 +38,19 @@
                 <abp-row>
                     <abp-column size-md="_6">
                         <abp-card-title>
-                            Crud page ...
+                            <h5>
+                                Crud page
+                            </h5>
                         </abp-card-title>
                     </abp-column>
-                    <abp-column size-md="_6" class="text-end">
+                    <abp-column size-md="_6" class="text-right">
         			    @* @if (await Authorization.IsGrantedAsync(SchoolPermissions.Enrollment.Create)) *@
-               @*          { *@
+                        @*          { *@
                         <abp-button id="NewButton"
-                                    text="Crear nuevo"
-                                    icon="plus"
-                                    size="Small"
-                                    button-type="Primary" />
+                                                                text="Crear nuevo"
+                                                                icon="plus"
+                                                                size="Small"
+                                                                button-type="Primary" />
                         @* } *@
                     </abp-column>
                 </abp-row>
