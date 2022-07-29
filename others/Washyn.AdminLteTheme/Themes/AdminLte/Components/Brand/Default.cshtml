@@ -1,5 +1,18 @@
+@using Volo.Abp.Ui.Branding
+
+@inject IBrandingProvider BrandingProvider
 <!-- Brand Logo -->
 <a href="~/" class="brand-link">
-    <img src="~/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-1" style="opacity: .8">
-    <span class="brand-text font-weight-light">AdminLTE 3</span>
+    @if (!BrandingProvider.LogoUrl.IsNullOrEmpty())
+    {
+        <img src="@BrandingProvider.LogoUrl" alt="@BrandingProvider.AppName" class="brand-image img-circle elevation-1" style="opacity: .8">
+    }
+    @* NOTE: can be delete this for not show logo when not has logo url *@
+    else
+    {
+        <img src="~/dist/img/AdminLTELogo.png" alt="@BrandingProvider.AppName" class="brand-image img-circle elevation-1" style="opacity: .8">
+    }
+    <span class="brand-text font-weight-light">
+        @BrandingProvider.AppName
+    </span>
 </a>
