@@ -3,7 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
+using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 
@@ -26,7 +28,15 @@ namespace Washyn.AdminLteTheme
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            Configure<AbpThemingOptions>(options =>
+            {
+                options.Themes.Add<AdminLteTheme>();
+            });
             
+            Configure<AbpAntiForgeryOptions>(options =>
+            {
+                options.AutoValidate = false;
+            });
         }
 
 
@@ -43,7 +53,7 @@ namespace Washyn.AdminLteTheme
             {
                 app.UseExceptionHandler("/Error");
             }
-
+            
             app.UseStaticFiles();
             app.UseRouting();
             app.UseConfiguredEndpoints();
