@@ -8,13 +8,6 @@ This is one soluction create fron scractc about example of use abp framework as 
 - Add bundle generation
 - create proxy scripts
 
-# TODO
-- Add localization only for test, how works
-- Disable proxy generation, for all by default and only add this with RemoteService decorator.
-
-# FIX 
-- when call remote service error, add jquery extensions for use abp.ajax, check where is located this function.
-
 
 
 
@@ -67,13 +60,21 @@ Pasos
 
 # TODO:
 
-- Agregar Ejemplo de domain
-- Agregar ejemplos de test en todas las capas
-- Agregar las librerias base de abp para poder probar
+- Agregar Ejemplo de domain, test, 2
+- Agregar ejemplos de test en todas las capas, 2
+- Agregar las librerias base de abp, front para poder probar, 1
+- Add localization only for test, how works                 3, hay otro ejemplo ya hecho, o crear una rama para proba esto
+- Disable proxy generation, for all by default and only add this with RemoteService decorator. 4
 
+
+# Improvement
+- Localization json
 
 
 # DONE
 - Agregar data seeder
 - Agregar crud basico
 - Add json secret file
+- Added logger
+- when call remote service error, add jquery extensions for use abp.ajax, check where is located this function.
+
