@@ -1,0 +1,143 @@
+@using System.Text
+@using Volo.Abp.AspNetCore.Mvc.UI.Alerts
+@model Volo.Abp.AspNetCore.Mvc.UI.Alerts.AlertList
+@if (Model.Any())
+{
+    <div id="AbpPageAlerts">
+        @foreach (var alertMessage in Model)
+        {
+            var cssClass = new StringBuilder(string.Empty);
+            if (alertMessage.Dismissible)
+            {
+                cssClass.Append(" alert-dismissible fade show ");
+            }
+            switch (alertMessage.Type)
+            {
+                case AlertType.Default:
+                    cssClass.Append("");
+                    break;
+                case AlertType.Primary:
+                    cssClass.Append("alert-default-primary");
+                    break;
+                case AlertType.Secondary:
+                    cssClass.Append("alert-default-secondary");
+                    break;
+                    
+                case AlertType.Success:
+                    cssClass.Append("alert-default-success");
+                    break;
+                case AlertType.Danger:
+                    cssClass.Append("alert-default-danger");
+                    break;
+                case AlertType.Warning:
+                    cssClass.Append("alert-default-warning");
+                    break;
+                    
+                case AlertType.Info:
+                    cssClass.Append("alert-default-info");
+                    break;
+                case AlertType.Light:
+                    cssClass.Append("alert-default-light");
+                    break;
+                case AlertType.Dark:
+                    cssClass.Append("alert-default-dark");
+                    break;
+                default:
+                    cssClass.Append("");
+                    break;
+            }
+            @* custom admin lte *@
+            // alert-warning estilo sobreescrito de admin lte
+            
+            <div class="alert @cssClass.ToString()" role="alert">
+                @if (alertMessage.Title != null)
+                {
+                    <h4>@alertMessage.Title</h4>
+                }
+                @alertMessage.Text
+    
+                @if (alertMessage.Dismissible)
+                {
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                }
+            </div>
+        }
+    </div>
+}
+
+
+@* $1$ Abp alerts #1# *@
+@* <div id="AbpPageAlerts2"> *@
+@*     <div role="alert" class="alert alert-primary alert-dismissible fade show"> *@
+@*         <h4 class="alert-heading">Titulo</h4> *@
+@*         Texto de la alerta. *@
+@*         <button type="button" class="close" data-dismiss="alert" aria-label="Close"> *@
+@*             <span aria-hidden="true">×</span> *@
+@*         </button> *@
+@*     </div> *@
+@*      *@
+@*     <div role="alert" class="alert alert-primary"> *@
+@*         <h4 class="alert-heading">Titulo</h4> *@
+@*         Texto de la alerta. *@
+@*     </div> *@
+@* </div> *@
+@* *@
+@* $1$ admin lte alert #1# *@
+@* <div class="alert alert-warning alert-dismissible fade show" role="alert"> *@
+@*     <strong>Holy guacamole!</strong> You should check in on some of those fields below. *@
+@*     <button type="button" class="close" data-dismiss="alert" aria-label="Close"> *@
+@*         <span aria-hidden="true">&times;</span> *@
+@*     </button> *@
+@* </div> *@
+@* $1$ boostrap alert #1# *@
+@* <div class="alert alert-warning alert-dismissible"> *@
+@*     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> *@
+@*     <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5> *@
+@*     Warning alert preview. This alert is dismissable. *@
+@* </div> *@
+@* *@
+
+
+@* *@
+@* <div id="AbpPageAlerts"> *@
+@*     <div role="alert" class="alert"> *@
+@*         <h4 class="alert-heading">Titulo</h4> *@
+@*         Texto de la alerta. *@
+@*     </div> *@
+@*      *@
+@*     <div role="alert" class="alert alert-primary"> *@
+@*         <h4 class="alert-heading">Titulo</h4> *@
+@*         Texto de la alerta. *@
+@*     </div> *@
+@*     <div role="alert" class="alert alert-secondary"> *@
+@*         <h4 class="alert-heading">Titulo</h4> *@
+@*         Texto de la alerta. *@
+@*     </div> *@
+@*     <div role="alert" class="alert alert-success"> *@
+@*         <h4 class="alert-heading">Titulo</h4> *@
+@*         Texto de la alerta. *@
+@*     </div> *@
+@*     <div role="alert" class="alert alert-danger"> *@
+@*         <h4 class="alert-heading">Titulo</h4> *@
+@*         Texto de la alerta. *@
+@*     </div> *@
+@*      *@
+@*     <div role="alert" class="alert alert-warning"> *@
+@*         <h4 class="alert-heading">Titulo</h4> *@
+@*         Texto de la alerta. *@
+@*     </div> *@
+@*     <div role="alert" class="alert alert-info"> *@
+@*         <h4 class="alert-heading">Titulo</h4> *@
+@*         Texto de la alerta. *@
+@*     </div> *@
+@*     <div role="alert" class="alert alert-light"> *@
+@*         <h4 class="alert-heading">Titulo</h4> *@
+@*         Texto de la alerta. *@
+@*     </div> *@
+@*     <div role="alert" class="alert alert-dark"> *@
+@*         <h4 class="alert-heading">Titulo</h4> *@
+@*         Texto de la alerta. *@
+@*     </div> *@
+@* </div> *@

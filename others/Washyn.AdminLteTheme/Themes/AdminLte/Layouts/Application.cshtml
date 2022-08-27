@@ -22,7 +22,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
   @* ------------------------------------------------------------------------------------ *@
-@* TODO: armar el reemplazo de esto con las librerias front base de abp y agregarlas debajo de esta seccion   *@
+  
+  @* THEME CSS *@
+  <link rel="stylesheet" href="~/css/style.css">
+  
+  @* TODO: armar el reemplazo de esto con las librerias front base de abp y agregarlas debajo de esta seccion   *@
   
   <!-- bundles -->
   @* TODO: check how to make in another example admin lte theme *@
@@ -58,6 +62,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <vc:page-alerts></vc:page-alerts>
     @RenderBody()
   </div>
   <!-- /.content-wrapper -->

@@ -13,6 +13,7 @@ namespace Washyn.AdminLteTheme.Bundling
             // Check how this works best
             // boostrap sobreescribe detalles de ui del adminlte
             // context.Files.Remove("/libs/bootstrap/css/bootstrap.css");
+            // add style for alert
         }
     }
 }
