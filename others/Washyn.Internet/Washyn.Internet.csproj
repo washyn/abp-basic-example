@@ -4,4 +4,94 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Swashbuckle" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Identity.Web" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="4.4.4" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Swashbuckle" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Account.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Account.HttpApi" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Identity" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.IdentityServer.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Identity.Web" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.IdentityServer" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.TenantManagement.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Featuremanagement.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Featuremanagement.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Featuremanagement.HttpApi" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.Featuremanagement.Web" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi" Version="4.4.4" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="4.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\Error.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+
 </Project>

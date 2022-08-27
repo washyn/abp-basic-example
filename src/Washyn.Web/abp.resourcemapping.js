@@ -6,7 +6,7 @@
 
     ],
     mappings: {
-        "@node_modules/admin-lte/dist/**/*.*": "./wwwroot/dist/",
-        "@node_modules/admin-lte/plugins/**/*.*": "./wwwroot/plugins/"
+        // "@node_modules/admin-lte/dist/**/*.*": "./wwwroot/dist/",
+        // "@node_modules/admin-lte/plugins/**/*.*": "./wwwroot/plugins/"
     }
 };

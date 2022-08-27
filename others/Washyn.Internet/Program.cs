@@ -21,6 +21,7 @@ namespace Washyn.Internet
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .UseAutofac();
     }
 }
