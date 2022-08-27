@@ -44,7 +44,7 @@ namespace Washyn.AdminLteTheme
         {
             var app = context.GetApplicationBuilder();
             var env = context.GetEnvironment();
-
+        
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

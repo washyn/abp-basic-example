@@ -103,4 +103,8 @@
     <_ContentIncludedByDefault Remove="Views\_ViewStart.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Washyn.AdminLteTheme\Washyn.AdminLteTheme.csproj" />
+  </ItemGroup>
+
 </Project>

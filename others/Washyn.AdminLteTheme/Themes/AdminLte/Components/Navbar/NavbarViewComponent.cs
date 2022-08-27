@@ -11,7 +11,7 @@ namespace Washyn.AdminLteTheme.Themes.AdminLte.Components.Navbar
         }
         public IViewComponentResult Invoke()
         {
-            return View("~/Themes/AdminLte/Components/Navbar/OriginalSection.cshtml");
+            return View("~/Themes/AdminLte/Components/Navbar/Default.cshtml");
         }
     }
 }

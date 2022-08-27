@@ -50,6 +50,7 @@ using Volo.Abp.UI.Navigation;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
+using Washyn.AdminLteTheme;
 using Washyn.Internet.Data;
 using Washyn.Internet.Localization;
 
@@ -66,7 +67,8 @@ namespace Washyn.Internet
         typeof(AbpSwashbuckleModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpAspNetCoreMvcUiBasicThemeModule),
+        // typeof(AbpAspNetCoreMvcUiBasicThemeModule),
+        typeof(WebModule),
 
         // Account module packages
         typeof(AbpAccountApplicationModule),
@@ -121,7 +123,7 @@ namespace Washyn.Internet
     [DependsOn(typeof(AbpAutofacModule))] //Add dependency to ABP Autofac module
     public class InternetModule : AbpModule
     {
-        public const bool IsMultiTenant = true;
+        public const bool IsMultiTenant = false;
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
             context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
