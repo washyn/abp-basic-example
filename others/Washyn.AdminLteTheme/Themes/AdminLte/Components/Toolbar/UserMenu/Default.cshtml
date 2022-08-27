@@ -1,0 +1,63 @@
+@using Volo.Abp.MultiTenancy
+@using Volo.Abp.UI.Navigation
+@using Volo.Abp.Users
+@model Volo.Abp.UI.Navigation.ApplicationMenu
+@inject ICurrentUser CurrentUser
+@inject ICurrentTenant CurrentTenant
+
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+        @if (CurrentUser.TenantId != null)
+        {
+            <small><i>@CurrentTenant.Name</i>\</small>
+        }
+        @CurrentUser.UserName
+    </a>
+    @if (Model.Items.Any())
+    {
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            @foreach (var menuItem in Model.Items)
+            {
+                var elementId = string.IsNullOrEmpty(menuItem.ElementId) ? string.Empty : $"id=\"{menuItem.ElementId}\"";
+                var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
+                var disabled = menuItem.IsDisabled ? "disabled" : string.Empty;
+                var url = string.IsNullOrEmpty(menuItem.Url) ? "#" : Url.Content(menuItem.Url);
+                
+                <a href="@url" target="@menuItem.Target" class="dropdown-item @cssClass @disabled" @Html.Raw(elementId) >
+                    @if (menuItem.Icon != null)
+                    {
+                        if (menuItem.Icon.StartsWith("fa"))
+                        {
+                            @* <i class="fas fa-users mr-2"></i> *@
+                            <i class="@menuItem.Icon mr-2"></i>
+                        }
+                    }
+                    @menuItem.DisplayName
+                </a>
+                @if (menuItem != Model.Items.Last())
+                {
+                    <div class="dropdown-divider"></div>
+                }
+            }
+        </div>
+    }
+</li>
+
+
+@* <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> *@
+@*     Admin *@
+@* </a> *@
+@* <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"> *@
+@*     <a href="#" class="dropdown-item"> *@
+@*         4 new messages *@
+@*     </a> *@
+@*     <div class="dropdown-divider"></div> *@
+@*     <a href="#" class="dropdown-item"> *@
+@*         8 friend requests *@
+@*     </a> *@
+@*     <div class="dropdown-divider"></div> *@
+@*     <a href="#" class="dropdown-item"> *@
+@*         3 new reports *@
+@*     </a> *@
+@* </div> *@

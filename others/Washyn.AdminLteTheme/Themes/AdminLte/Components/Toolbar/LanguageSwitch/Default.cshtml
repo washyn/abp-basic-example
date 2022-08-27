@@ -1,0 +1,20 @@
+@using Microsoft.AspNetCore.Http.Extensions
+@model Washyn.AdminLteTheme.Themes.AdminLte.Components.Toolbar.LanguageSwitch.LanguageSwitchViewComponentModel
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+        @Model.CurrentLanguage.DisplayName
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        @foreach (var language in Model.OtherLanguages)
+        {
+            <a href="~/Abp/Languages/Switch?culture=@(language.CultureName)&uiCulture=@(language.UiCultureName)&returnUrl=@(System.Net.WebUtility.UrlEncode(Context.Request.GetEncodedPathAndQuery()))" class="dropdown-item">
+                @* Improvement: estos tenian iconos ver si se puede agregar el icono *@
+                @language.DisplayName
+            </a>
+            @if (language != Model.OtherLanguages.Last())
+            {
+                <div class="dropdown-divider"></div>
+            }
+        }
+    </div>
+</li>
