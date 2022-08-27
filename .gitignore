@@ -403,3 +403,6 @@ FodyWeavers.xsd
 **/wwwroot/libs/*
 **/wwwroot/dist/*
 **/wwwroot/plugins/*
+
+
+others/Washyn.Internet/wwwroot/lib

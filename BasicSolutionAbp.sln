@@ -36,6 +36,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "others", "others", "{C06549
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Washyn.AdminLteTheme", "others\Washyn.AdminLteTheme\Washyn.AdminLteTheme.csproj", "{E75D5B44-0012-4BA2-8EDC-CFEE75E464A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Washyn.Internet", "others\Washyn.Internet\Washyn.Internet.csproj", "{90EDB88A-56AB-454F-8062-4DE47DE4E70B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{E75D5B44-0012-4BA2-8EDC-CFEE75E464A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E75D5B44-0012-4BA2-8EDC-CFEE75E464A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E75D5B44-0012-4BA2-8EDC-CFEE75E464A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90EDB88A-56AB-454F-8062-4DE47DE4E70B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90EDB88A-56AB-454F-8062-4DE47DE4E70B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90EDB88A-56AB-454F-8062-4DE47DE4E70B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90EDB88A-56AB-454F-8062-4DE47DE4E70B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{F07B0B50-8CB4-40B4-AF35-F0A7F34FEBBA} = {9035B7EB-5C1D-4C36-89DE-0BC6C5551789}
 		{423E2AE6-CB8C-4EBE-B984-16AFFB63A9D2} = {F07B0B50-8CB4-40B4-AF35-F0A7F34FEBBA}
 		{E75D5B44-0012-4BA2-8EDC-CFEE75E464A9} = {C06549C9-410B-4888-B009-D0306AC2CE80}
+		{90EDB88A-56AB-454F-8062-4DE47DE4E70B} = {C06549C9-410B-4888-B009-D0306AC2CE80}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2C0D822-0A1D-4923-BA47-8D3F151AA5ED}
