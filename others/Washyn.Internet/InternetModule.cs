@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using EasyAbp.Abp.SettingUi;
+using EasyAbp.Abp.SettingUi.Web;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -51,9 +53,11 @@ using Volo.Abp.VirtualFileSystem;
 using Washyn.Internet.Data;
 using Washyn.Internet.Localization;
 
+
 namespace Washyn.Internet
 {
     [DependsOn(
+        
         // ABP Framework packages
         typeof(AbpAspNetCoreMvcModule),
         typeof(AbpAutofacModule),
@@ -102,7 +106,15 @@ namespace Washyn.Internet
         typeof(AbpSettingManagementApplicationModule),
         typeof(AbpSettingManagementEntityFrameworkCoreModule),
         typeof(AbpSettingManagementHttpApiModule),
-        typeof(AbpSettingManagementWebModule)
+        typeof(AbpSettingManagementWebModule),
+        
+        // Settings UI modules
+        typeof(AbpSettingUiApplicationModule),
+        typeof(AbpSettingUiApplicationContractsModule),
+        typeof(AbpSettingUiDomainSharedModule),
+        typeof(AbpSettingUiHttpApiModule),
+        typeof(AbpSettingUiWebModule)
+
     )]
     
     [DependsOn(typeof(AbpAspNetCoreMvcModule))]
