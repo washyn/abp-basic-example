@@ -1,4 +1,7 @@
-﻿<!-- Main Sidebar Container -->
+﻿@using Volo.Abp.Users
+@using Washyn.AdminLteTheme.Themes.AdminLte.Components.Brand
+@inject ICurrentUser CurrentUser
+<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-success elevation-1">
   
   <vc:brand-logo></vc:brand-logo>
@@ -11,7 +14,9 @@
         <img src="~/dist/img/user2-160x160.jpg" class="img-circle elevation-1" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        <a href="#" class="d-block">
+          @CurrentUser.Name @CurrentUser.SurName
+        </a>
       </div>
     </div>
 
