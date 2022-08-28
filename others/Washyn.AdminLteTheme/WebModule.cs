@@ -4,10 +4,13 @@ using Microsoft.Extensions.Hosting;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
+using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
+using Washyn.AdminLteTheme.Bundling;
 
 namespace Washyn.AdminLteTheme
 {
@@ -33,30 +36,49 @@ namespace Washyn.AdminLteTheme
                 options.Themes.Add<AdminLteTheme>();
             });
             
-            Configure<AbpAntiForgeryOptions>(options =>
+            // Configure<AbpAntiForgeryOptions>(options =>
+            // {
+            //     options.AutoValidate = false;
+            // });
+            
+            Configure<AbpBundlingOptions>(options =>
             {
-                options.AutoValidate = false;
+                options
+                    .StyleBundles
+                    .Add(CustomBundles.Styles.Global, bundle =>
+                    {
+                        bundle
+                            .AddContributors(typeof(StyleContributor));
+                    });
+
+                options
+                    .ScriptBundles
+                    .Add(CustomBundles.Scripts.Global, bundle =>
+                    {
+                        bundle
+                            .AddContributors(typeof(ScriptContributor));
+                    });
             });
         }
 
 
-        public override void OnApplicationInitialization(ApplicationInitializationContext context)
-        {
-            var app = context.GetApplicationBuilder();
-            var env = context.GetEnvironment();
-        
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-            }
-            
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseConfiguredEndpoints();
-        }
+        // public override void OnApplicationInitialization(ApplicationInitializationContext context)
+        // {
+        //     var app = context.GetApplicationBuilder();
+        //     var env = context.GetEnvironment();
+        //
+        //     if (env.IsDevelopment())
+        //     {
+        //         app.UseDeveloperExceptionPage();
+        //     }
+        //     else
+        //     {
+        //         app.UseExceptionHandler("/Error");
+        //     }
+        //     
+        //     app.UseStaticFiles();
+        //     app.UseRouting();
+        //     app.UseConfiguredEndpoints();
+        // }
     }
 }

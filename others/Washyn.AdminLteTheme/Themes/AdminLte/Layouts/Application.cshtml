@@ -1,113 +1,118 @@
-﻿@using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetScripts
+﻿@using System.Globalization
+@using Volo.Abp.AspNetCore.Mvc.AntiForgery
+@using Volo.Abp.AspNetCore.Mvc.UI.Bundling.TagHelpers
+@using Volo.Abp.AspNetCore.Mvc.UI.Components.LayoutHook
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Volo.Abp.AspNetCore.Mvc.UI.Theming
+@using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetScripts
 @using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetStyles
+@using Volo.Abp.Localization
+@using Volo.Abp.Ui.Branding
+@using Washyn.AdminLteTheme.Bundling
+@using Washyn.AdminLteTheme.Themes.AdminLte.Components.ControlSidebar
+@using Washyn.AdminLteTheme.Themes.AdminLte.Components.Footer
+@using Washyn.AdminLteTheme.Themes.AdminLte.Components.MainSidebarContainer
+@using Washyn.AdminLteTheme.Themes.AdminLte.Components.Navbar
 @using Washyn.AdminLteTheme.Themes.AdminLte.Components.PageAlerts
+@inject IBrandingProvider BrandingProvider
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IPageLayout PageLayout
 @{
   Layout = null;
+  
+  AbpAntiForgeryManager.SetCookie();
+  
+  // var containerClass = ViewBag.FluidLayout == true ? "container-fluid" : "container"; //TODO: Better and type-safe options
+
+  var pageTitle = ViewBag.Title == null ? BrandingProvider.AppName : ViewBag.Title; //TODO: Discard to get from Title
+
+  if (PageLayout.Content.Title != null)
+  {
+    if (!string.IsNullOrWhiteSpace(pageTitle))
+    {
+      pageTitle = " | " + pageTitle;
+    }
+
+    pageTitle = PageLayout.Content.Title + pageTitle;
+  }
+
+  var rtl = CultureHelper.IsRtl ? "rtl" : string.Empty;
 }
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
+
+<html lang="@CultureInfo.CurrentCulture.Name" dir="@rtl">
 <head>
+  @await Component.InvokeLayoutHookAsync(LayoutHooks.Head.First, StandardLayouts.Application)
+  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Starter</title>
-@* ADMIN LTE DEFAULT STYLES *@
-@* ------------------------------------------------------------------------------------ *@
-  <!-- Google Font: Source Sans Pro -->
+  <title>@pageTitle</title>
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
-  @* ------------------------------------------------------------------------------------ *@
   
-  @* THEME CSS *@
-  <link rel="stylesheet" href="~/css/style.css">
-  
-  @* TODO: armar el reemplazo de esto con las librerias front base de abp y agregarlas debajo de esta seccion   *@
-  
-  <!-- bundles -->
-  @* TODO: check how to make in another example admin lte theme *@
-    @* TODO: fix this order and create admin lte theme... *@
-    @* <abp-style-bundle> *@
-    @*   <abp-style type="@typeof(StyleContributor)"></abp-style> *@
-    @* </abp-style-bundle> *@
-  
-  @* Admin lte css libs *@
-  <!-- Google Font: Source Sans Pro -->
-  @* <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> *@
+  <abp-style-bundle name="@CustomBundles.Styles.Global" />
 
-  @* already aded with basic style *@
-  <!-- Font Awesome Icons -->
-  @* <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css"> *@
+  @* esto no esta en el tema por defecto *@
+  @await RenderSectionAsync("style_plugins", false)
   
-  @* this already include boostrap *@
-  <!-- Theme style -->
-  
-  @* <link rel="stylesheet" href="~/dist/css/adminlte.css"> *@
-  @* *@
-  @* @await Component.InvokeAsync(typeof(WidgetStylesViewComponent)) *@
-  @* @await RenderSectionAsync("styles", false) *@
+  @* TODO: simplify this admin lte, removing boostrap first secction 53012-10368 *@
+  @* add as bundle creating second bundle, no se puede agregar como abp-style porque no esta disponible el tag helper *@
+  <link rel="stylesheet" href="~/dist/css/adminlte.css">
+  <link rel="stylesheet" href="~/css/layout.css">
 
+  @await Component.InvokeAsync(typeof(WidgetStylesViewComponent))
   
+  @await RenderSectionAsync("styles", false)
+  
+  @await Component.InvokeLayoutHookAsync(LayoutHooks.Head.Last, StandardLayouts.Application)
 </head>
 <body class="hold-transition sidebar-mini">
+
+@await Component.InvokeLayoutHookAsync(LayoutHooks.Body.First, StandardLayouts.Application)
+
 <div class="wrapper">
-  
+
   <vc:navbar></vc:navbar>
 
   <vc:main-sidebar-container></vc:main-sidebar-container>
 
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    @* <vc:page-alerts></vc:page-alerts> *@
     @(await Component.InvokeAsync<Washyn.AdminLteTheme.Themes.AdminLte.Components.PageAlerts.PageAlertsViewComponent>())
+
+    @* <div id="AbpContentToolbar"> *@
+    @*   <div class="text-right mb-2"> *@
+    @*     @RenderSection("content_toolbar", false) *@
+    @*   </div> *@
+    @* </div> *@
+
+    @await Component.InvokeLayoutHookAsync(LayoutHooks.PageContent.First, StandardLayouts.Application)
     @RenderBody()
+    @await Component.InvokeLayoutHookAsync(LayoutHooks.PageContent.Last, StandardLayouts.Application)
+
   </div>
-  <!-- /.content-wrapper -->
 
   <vc:control-sidebar></vc:control-sidebar>
-  
+
   <vc:footer></vc:footer>
 </div>
-<!-- ./wrapper -->
+
+<abp-script-bundle name="@CustomBundles.Scripts.Global"/>
+
+@* esto no esta en el tema por defecto *@
+@await RenderSectionAsync("script_plugins", false)
+
+<script src="~/dist/js/adminlte.js"></script>
+<script src="~/js/layout.js"></script>
 
 
-<!-- REQUIRED SCRIPTS -->
-@* ADMIN LTE DEFAULT SCRIPTS *@
-@* ------------------------------------------------------------------------------------- *@
-<!-- jQuery -->
-<script src="~/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="~/dist/js/adminlte.min.js"></script>
-@* ------------------------------------------------------------------------------------- *@
-@* TODO: armar el reemplazo de esto con las librerias front base de abp y agregarlas debajo de esta seccion *@
+<script src="~/Abp/ApplicationConfigurationScript"></script>
+<script src="~/Abp/ServiceProxyScript"></script>
 
-<!-- Script bundles -->
-@* <abp-script-bundle> *@
-@*   <abp-script type="@typeof(ScriptContributor)"></abp-script> *@
-@* </abp-script-bundle> *@
+@await Component.InvokeAsync(typeof(WidgetScriptsViewComponent))
 
-@* theme libs *@
-@* already aded *@
-<!-- jQuery -->
-@* <script src="~/plugins/jquery/jquery.min.js"></script> *@
+@await RenderSectionAsync("scripts", false)
 
-@* already aded *@
-<!-- Bootstrap 4 -->
-@* <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> *@
-<!-- AdminLTE App -->
-
-@* <script src="~/dist/js/adminlte.min.js"></script> *@
-@* <script src="~/Abp/ApplicationConfigurationScript"></script> *@
-@* <script src="~/Abp/ServiceProxyScript"></script> *@
-@* @await RenderSectionAsync("scripts", false) *@
-@* @await Component.InvokeAsync(typeof(WidgetScriptsViewComponent)) *@
+@await Component.InvokeLayoutHookAsync(LayoutHooks.Body.Last, StandardLayouts.Application)
 
 </body>
 </html>
