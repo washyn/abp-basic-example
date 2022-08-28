@@ -5,18 +5,23 @@ using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
+using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Toolbars;
 using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 using Washyn.AdminLteTheme.Bundling;
+using Washyn.AdminLteTheme.Toolbars;
 
 namespace Washyn.AdminLteTheme
 {
     [DependsOn(typeof(AbpAspNetCoreMvcModule))]
-    [DependsOn(typeof(AbpAspNetCoreMvcUiThemeSharedModule))]
     [DependsOn(typeof(AbpAutofacModule))] //Add dependency to ABP Autofac module
+    
+    [DependsOn(typeof(AbpAspNetCoreMvcUiThemeSharedModule))]
+    [DependsOn(typeof(AbpAspNetCoreMvcUiMultiTenancyModule))]
     public class WebModule : AbpModule
     {
         
@@ -34,6 +39,11 @@ namespace Washyn.AdminLteTheme
             Configure<AbpThemingOptions>(options =>
             {
                 options.Themes.Add<AdminLteTheme>();
+            });
+            
+            Configure<AbpToolbarOptions>(options =>
+            {
+                options.Contributors.Add(new AdminLteThemeMainTopToolbarContributor());
             });
             
             // Configure<AbpAntiForgeryOptions>(options =>

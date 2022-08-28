@@ -53,6 +53,7 @@ using Volo.Abp.VirtualFileSystem;
 using Washyn.AdminLteTheme;
 using Washyn.Internet.Data;
 using Washyn.Internet.Localization;
+using Washyn.Internet.Menus;
 
 
 namespace Washyn.Internet
@@ -259,7 +260,7 @@ namespace Washyn.Internet
         {
             Configure<AbpNavigationOptions>(options =>
             {
-                // options.MenuContributors.Add(new InternetMenuContributor());
+                options.MenuContributors.Add(new InternetMenuContributor());
             });
         }
 
@@ -348,7 +349,7 @@ namespace Washyn.Internet
             const string FilePath = @"..\Rotativa\Windows\x64";
             // Rotativa.AspNetCore.RotativaConfiguration.Setup(env.WebRootPath);
             //Rotativa.AspNetCore.RotativaConfiguration.Setup(env.WebRootPath);
-
+            
         }
     }
 }

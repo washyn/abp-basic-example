@@ -9,7 +9,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <vc:main-navbar-tools></vc:main-navbar-tools>
+      @(await Component.InvokeAsync<Washyn.AdminLteTheme.Themes.AdminLte.Components.Toolbar.MainNavbarToolsViewComponent>())
     </ul>
   </nav>
   <!-- /.navbar -->
