@@ -1,0 +1,148 @@
+﻿@model Volo.Abp.UI.Navigation.ApplicationMenu
+
+@* <li class="nav-item"> *@
+@*     <a href="https://adminlte.io/docs/3.1/" class="nav-link"> *@
+@*         <i class="nav-icon fas fa-file"></i> *@
+@*         <p>Documentation</p> *@
+@*     </a> *@
+@* </li> *@
+@* *@
+@* <li class="nav-item"> *@
+@*     <a href="#" class="nav-link"> *@
+@*         <i class="nav-icon far fa-circle text-warning"></i> *@
+@*         <p>Warning</p> *@
+@*     </a> *@
+@* </li> *@
+
+@foreach (var menuItem in Model.Items)
+{
+    var elementId = string.IsNullOrEmpty(menuItem.ElementId) ? string.Empty : $"id=\"{menuItem.ElementId}\"";
+    var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
+    var disabled = menuItem.IsDisabled ? "disabled" : string.Empty;
+    var url = string.IsNullOrEmpty(menuItem.Url) ? "#" : Url.Content(menuItem.Url);
+    if (menuItem.IsLeaf)
+    {
+        if (menuItem.Url != null)
+        {
+            <li class="nav-item @cssClass @disabled" @Html.Raw(elementId)>
+                <a href="@url" class="nav-link" target="@menuItem.Target">
+                    @if (menuItem.Icon != null)
+                    {
+                        if (menuItem.Icon.StartsWith("fa"))
+                        {
+                            @* <i class="nav-icon far fa-circle"></i> *@
+                            <i class="nav-icon @menuItem.Icon"></i>
+                        }
+                    }
+                    <p>
+                        @menuItem.DisplayName
+                    </p>
+                </a>
+            </li>
+        }
+    }
+    else
+    {
+        <li class="nav-item">
+            <a href="#" class="nav-link" id="Menu_@(menuItem.Name)">
+                @if (menuItem.Icon != null)
+                {
+                    if (menuItem.Icon.StartsWith("fa"))
+                    {
+                        // TODO: add icon name
+                        <i class="far fa-circle nav-icon"></i>
+                    }
+                }
+                
+                <p>
+                    @menuItem.DisplayName
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            @* improvement can be add aria-labelledby *@
+            
+            <ul class="nav nav-treeview">
+                
+                @foreach (var childMenuItem in menuItem.Items)
+                {
+                    @await Html.PartialAsync("~/Themes/AdminLte/Components/MainMenu/_MenuItem.cshtml", childMenuItem)
+                }
+                
+                @* <li class="nav-item"> *@
+                @*     <a href="#" class="nav-link"> *@
+                @*         <i class="far fa-dot-circle nav-icon"></i> *@
+                @*         <p>Level 3</p> *@
+                @*     </a> *@
+                @* </li> *@
+                @* <li class="nav-item"> *@
+                @*     <a href="#" class="nav-link"> *@
+                @*         <i class="far fa-dot-circle nav-icon"></i> *@
+                @*         <p>Level 3</p> *@
+                @*     </a> *@
+                @* </li> *@
+                @* <li class="nav-item"> *@
+                @*     <a href="#" class="nav-link"> *@
+                @*         <i class="far fa-dot-circle nav-icon"></i> *@
+                @*         <p>Level 3</p> *@
+                @*     </a> *@
+                @* </li> *@
+                
+            </ul>
+        </li>
+    }
+}
+
+@* item is  *@
+
+@* <li class="nav-item"> *@
+@*     <a href="#" class="nav-link"> *@
+@*         <i class="nav-icon fas fa-circle"></i> *@
+@*         <p> *@
+@*             Level 1 *@
+@*             <i class="right fas fa-angle-left"></i> *@
+@*         </p> *@
+@*     </a> *@
+@*     <ul class="nav nav-treeview"> *@
+@*         <li class="nav-item"> *@
+@*             <a href="#" class="nav-link"> *@
+@*                 <i class="far fa-circle nav-icon"></i> *@
+@*                 <p>Level 2</p> *@
+@*             </a> *@
+@*         </li> *@
+@*         <li class="nav-item"> *@
+@*             <a href="#" class="nav-link"> *@
+@*                 <i class="far fa-circle nav-icon"></i> *@
+@*                 <p> *@
+@*                     Level 2 *@
+@*                     <i class="right fas fa-angle-left"></i> *@
+@*                 </p> *@
+@*             </a> *@
+@*             <ul class="nav nav-treeview"> *@
+@*                 <li class="nav-item"> *@
+@*                     <a href="#" class="nav-link"> *@
+@*                         <i class="far fa-dot-circle nav-icon"></i> *@
+@*                         <p>Level 3</p> *@
+@*                     </a> *@
+@*                 </li> *@
+@*                 <li class="nav-item"> *@
+@*                     <a href="#" class="nav-link"> *@
+@*                         <i class="far fa-dot-circle nav-icon"></i> *@
+@*                         <p>Level 3</p> *@
+@*                     </a> *@
+@*                 </li> *@
+@*                 <li class="nav-item"> *@
+@*                     <a href="#" class="nav-link"> *@
+@*                         <i class="far fa-dot-circle nav-icon"></i> *@
+@*                         <p>Level 3</p> *@
+@*                     </a> *@
+@*                 </li> *@
+@*             </ul> *@
+@*         </li> *@
+@*         <li class="nav-item"> *@
+@*             <a href="#" class="nav-link"> *@
+@*                 <i class="far fa-circle nav-icon"></i> *@
+@*                 <p>Level 2</p> *@
+@*             </a> *@
+@*         </li> *@
+@*     </ul> *@
+@* </li> *@

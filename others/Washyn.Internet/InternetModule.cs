@@ -70,6 +70,7 @@ namespace Washyn.Internet
         typeof(AbpAspNetCoreSerilogModule),
         // typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(WebModule),
+        // typeof(AbpAspNetCoreMvcUiLeptonThemeModule),
 
         // Account module packages
         typeof(AbpAccountApplicationModule),
@@ -139,7 +140,7 @@ namespace Washyn.Internet
                 //     typeof(InternetDomainSharedModule).Assembly,
                 //     typeof(InternetApplicationModule).Assembly,
                 //     typeof(InternetApplicationContractsModule).Assembly,
-                //     typeof(InternetWebModule).Assembly
+                //     typeof(InternetModule).Assembly
                 // );
             });
         }
@@ -209,18 +210,33 @@ namespace Washyn.Internet
             });
         }
 
+        // private void ConfigureVirtualFileSystem(IWebHostEnvironment hostingEnvironment)
+        // {
+        //     Configure<AbpVirtualFileSystemOptions>(options =>
+        //     {
+        //         options.FileSets.AddEmbedded<InternetModule>();
+        //         if (hostingEnvironment.IsDevelopment())
+        //         {
+        //             /* Using physical files in development, so we don't need to recompile on changes */
+        //             options.FileSets.ReplaceEmbeddedByPhysical<InternetModule>(hostingEnvironment.ContentRootPath);
+        //         }
+        //     });
+        // }
+        
         private void ConfigureVirtualFileSystem(IWebHostEnvironment hostingEnvironment)
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
                 options.FileSets.AddEmbedded<InternetModule>();
+
                 if (hostingEnvironment.IsDevelopment())
                 {
-                    /* Using physical files in development, so we don't need to recompile on changes */
+                    // options.FileSets.ReplaceEmbeddedByPhysical<InternetModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}Washyn.Internet", Path.DirectorySeparatorChar)));
                     options.FileSets.ReplaceEmbeddedByPhysical<InternetModule>(hostingEnvironment.ContentRootPath);
                 }
             });
         }
+
 
         private void ConfigureLocalizationServices()
         {
