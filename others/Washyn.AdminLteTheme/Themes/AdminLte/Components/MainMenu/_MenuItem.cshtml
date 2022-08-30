@@ -10,9 +10,8 @@
 {
     if (Model.Url != null)
     {
-        // TODO: chekk how to use disabled class
-        <li class="nav-item @cssClass @disabled">
-            <a class="nav-link" href="@url" target="@Model.Target" @Html.Raw(elementId)>
+        <li class="nav-item @cssClass ">
+            <a class="nav-link @disabled" href="@url" target="@Model.Target" @Html.Raw(elementId)>
                 @if (Model.Icon != null)
                 {
                     if (Model.Icon.StartsWith("fa"))

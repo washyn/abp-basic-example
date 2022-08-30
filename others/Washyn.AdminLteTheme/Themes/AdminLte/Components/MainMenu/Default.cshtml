@@ -24,8 +24,8 @@
     {
         if (menuItem.Url != null)
         {
-            <li class="nav-item @cssClass @disabled" @Html.Raw(elementId)>
-                <a href="@url" class="nav-link" target="@menuItem.Target">
+            <li class="nav-item @cssClass " @Html.Raw(elementId)>
+                <a href="@url" class="nav-link @disabled" target="@menuItem.Target">
                     @if (menuItem.Icon != null)
                     {
                         if (menuItem.Icon.StartsWith("fa"))
