@@ -30,10 +30,14 @@
                     {
                         if (menuItem.Icon.StartsWith("fa"))
                         {
-                            @* <i class="nav-icon far fa-circle"></i> *@
                             <i class="nav-icon @menuItem.Icon"></i>
                         }
                     }
+                    else
+                    {
+                        <i class="fas fa-circle nav-icon"></i>
+                    }
+
                     <p>
                         @menuItem.DisplayName
                     </p>
@@ -49,9 +53,12 @@
                 {
                     if (menuItem.Icon.StartsWith("fa"))
                     {
-                        // TODO: add icon name
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="nav-icon @menuItem.Icon"></i>
                     }
+                }
+                else
+                {
+                    <i class="far fa-circle nav-icon"></i>
                 }
                 
                 <p>

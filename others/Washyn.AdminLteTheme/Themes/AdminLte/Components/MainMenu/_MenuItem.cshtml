@@ -17,10 +17,14 @@
                 {
                     if (Model.Icon.StartsWith("fa"))
                     {
-                        // TODO: add icon name
-                        <i class="far fa-dot-circle nav-icon"></i>
+                        <i class="nav-icon @Model.Icon"></i>
                     }
                 }
+                else
+                {
+                    <i class="far fa-circle nav-icon"></i>
+                }
+
                 <p>
                     @Model.DisplayName
                 </p>
@@ -36,9 +40,12 @@ else
             {
                 if (Model.Icon.StartsWith("fa"))
                 {
-                    // TODO: add icon name
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="nav-icon @Model.Icon"></i>
                 }
+            }
+            else
+            {
+                <i class="far fa-dot-circle nav-icon"></i>
             }
             <p>
                 @Model.DisplayName
