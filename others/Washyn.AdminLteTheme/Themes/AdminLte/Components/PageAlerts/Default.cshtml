@@ -3,7 +3,7 @@
 @model Volo.Abp.AspNetCore.Mvc.UI.Alerts.AlertList
 @if (Model.Any())
 {
-    <div id="AbpPageAlerts">
+    <div class="AbpPageAlerts">
         @foreach (var alertMessage in Model)
         {
             var cssClass = new StringBuilder(string.Empty);

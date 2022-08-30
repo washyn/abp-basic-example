@@ -86,6 +86,8 @@
     @* </div> *@
 
     @await Component.InvokeLayoutHookAsync(LayoutHooks.PageContent.First, StandardLayouts.Application)
+    @* <div class="container-fluid"> *@
+    @* </div> *@
     @RenderBody()
     @await Component.InvokeLayoutHookAsync(LayoutHooks.PageContent.Last, StandardLayouts.Application)
 

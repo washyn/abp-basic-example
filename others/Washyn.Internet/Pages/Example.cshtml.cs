@@ -4,7 +4,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
 
 namespace Washyn.Internet.Pages
 {
-    public class Index : AbpPageModel
+    public class Example : AbpPageModel
     {
         public void OnGet()
         {

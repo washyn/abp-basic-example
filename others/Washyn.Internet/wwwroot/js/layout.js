@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let alertsContainer = "AbpPageAlerts";
     let hasContenet = false;
     let itemAlerts = null;
-
+    
     let contentWraper = document.querySelector(".content-wrapper");
     let childs = Array.from(contentWraper.childNodes);
 
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     childs.forEach(function (item) {
         let clases = item.classList;
-
+        
         if (clases !== undefined){
             if (clases.contains(content)){
                 hasContenet = true;
@@ -27,14 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 itemAlerts = item;
             }
         }
-
+        
     });
 
     if (!hasContenet){
         contentWraper.style.padding = "0.5rem";
         console.log(" NO Tiene elemento content")
     }
-
+    
     if (itemAlerts !== null){
         console.log("exists alerts")
         if (hasContenet){
