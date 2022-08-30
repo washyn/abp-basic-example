@@ -72,23 +72,23 @@ namespace Washyn.AdminLteTheme
         }
 
 
-        // public override void OnApplicationInitialization(ApplicationInitializationContext context)
-        // {
-        //     var app = context.GetApplicationBuilder();
-        //     var env = context.GetEnvironment();
-        //
-        //     if (env.IsDevelopment())
-        //     {
-        //         app.UseDeveloperExceptionPage();
-        //     }
-        //     else
-        //     {
-        //         app.UseExceptionHandler("/Error");
-        //     }
-        //     
-        //     app.UseStaticFiles();
-        //     app.UseRouting();
-        //     app.UseConfiguredEndpoints();
-        // }
+        public override void OnApplicationInitialization(ApplicationInitializationContext context)
+        {
+            var app = context.GetApplicationBuilder();
+            var env = context.GetEnvironment();
+        
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+            }
+            
+            app.UseStaticFiles();
+            app.UseRouting();
+            app.UseConfiguredEndpoints();
+        }
     }
 }
