@@ -70,6 +70,7 @@ namespace Washyn.Internet
         typeof(AbpAspNetCoreSerilogModule),
         // typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(WebModule),
+        
         // typeof(AbpAspNetCoreMvcUiLeptonThemeModule),
 
         // Account module packages
