@@ -3,6 +3,7 @@
 @using Volo.Abp.AspNetCore.Mvc.UI.Bundling.TagHelpers
 @using Volo.Abp.AspNetCore.Mvc.UI.Components.LayoutHook
 @using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling
 @using Volo.Abp.AspNetCore.Mvc.UI.Theming
 @using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetScripts
 @using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetStyles
@@ -50,7 +51,7 @@
   
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   
-  <abp-style-bundle name="@CustomBundles.Styles.Global" />
+  <abp-style-bundle name="@StandardBundles.Styles.Global" />
 
   @* esto no esta en el tema por defecto *@
   @await RenderSectionAsync("style_plugins", false)
@@ -96,7 +97,7 @@
   <vc:footer></vc:footer>
 </div>
 
-<abp-script-bundle name="@CustomBundles.Scripts.Global"/>
+<abp-script-bundle name="@StandardBundles.Scripts.Global"/>
 
 @* esto no esta en el tema por defecto *@
 @await RenderSectionAsync("script_plugins", false)

@@ -22,6 +22,8 @@ namespace Washyn.AdminLteTheme
     
     [DependsOn(typeof(AbpAspNetCoreMvcUiThemeSharedModule))]
     [DependsOn(typeof(AbpAspNetCoreMvcUiMultiTenancyModule))]
+    
+    
     public class WebModule : AbpModule
     {
         
@@ -53,21 +55,21 @@ namespace Washyn.AdminLteTheme
             
             Configure<AbpBundlingOptions>(options =>
             {
-                options
-                    .StyleBundles
-                    .Add(CustomBundles.Styles.Global, bundle =>
-                    {
-                        bundle
-                            .AddContributors(typeof(StyleContributor));
-                    });
-
-                options
-                    .ScriptBundles
-                    .Add(CustomBundles.Scripts.Global, bundle =>
-                    {
-                        bundle
-                            .AddContributors(typeof(ScriptContributor));
-                    });
+                // options
+                //     .StyleBundles
+                //     .Add(StandardBundles.Styles.Global, bundle =>
+                //     {
+                //         bundle
+                //             .AddContributors(typeof(StyleContributor));
+                //     });
+                //
+                // options
+                //     .ScriptBundles
+                //     .Add(StandardBundles.Scripts.Global, bundle =>
+                //     {
+                //         bundle
+                //             .AddContributors(typeof(ScriptContributor));
+                //     });
             });
         }
 
