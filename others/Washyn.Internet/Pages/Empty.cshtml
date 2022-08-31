@@ -1,0 +1,23 @@
+﻿@page
+@using Volo.Abp.AspNetCore.Mvc.UI.Theming
+@model Washyn.Internet.Pages.Empty
+@inject IThemeManager ThemeManager
+
+@{
+    // Layout = ThemeManager.CurrentTheme.GetLayout("AdminLteEmptyLayout");
+    Layout = ThemeManager.CurrentTheme.GetLayout("Empty");
+}
+
+<div class="container">
+    <abp-card>
+        <abp-card-header>
+            <abp-card-title>
+                Titulo
+            </abp-card-title>
+        </abp-card-header>
+        <abp-card-body>
+            Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.
+        </abp-card-body>
+    </abp-card>
+    
+</div>
