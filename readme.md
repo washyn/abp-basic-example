@@ -66,3 +66,17 @@ Pasos
     <abp-style type="@(typeof(CoreStyleContributor))"></abp-style>
 </abp-style-bundle>
 ``` -->
+
+
+
+
+---
+
+# Dependency tree of package
+
+
+└─ @abp/jquery@4.4.4
+   ├─ jquery@3.6.1
+   └─ @abp/core@4.4.4
+      └─ @abp/utils@4.4.4
+         └─ just-compare@1.5.1
