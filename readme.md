@@ -40,32 +40,28 @@ Pasos
 
 
 ```html
-<abp-script-bundle name="ScriptBundle">
-    <abp-script src="/lib/jquery/dist/jquery.min.js"></abp-script>
-    <abp-script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></abp-script>
-    <abp-script type="@(typeof(CoreScriptContributor))"></abp-script>
-    <abp-script src="/js/site.js"></abp-script>
-</abp-script-bundle>
+<abp-style-bundle name="StylesBundle">
+    <abp-style type="@(typeof(CoreStyleContributor))"></abp-style>
+    <abp-style type="@(typeof(BootstrapStyleContributor))"></abp-style>
+    <abp-style src="/css/site.css"/>
+</abp-style-bundle>
 
 ```
 
 
 ``` html
-<abp-style-bundle name="StylesBundle">
-    <abp-style src="/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <abp-style src="/css/site.css" />
-    <abp-style type="@(typeof(CoreStyleContributor))"></abp-style>
-</abp-style-bundle>
+<abp-script-bundle name="ScriptBundle">
+    <abp-script type="@(typeof(BootstrapScriptContributor))"></abp-script>
+    <abp-script src="/js/site.js"></abp-script>
+</abp-script-bundle>
 ``` -->
 
 # TODO:
 
-- Agregar Ejemplo de domain, test, 2
+- Agregar Ejemplo de domain service, test, 2
 - Agregar ejemplos de test en todas las capas, 2
-- Agregar las librerias base de abp, front para poder probar, 1
-- Add localization only for test, how works                 3, hay otro ejemplo ya hecho, o crear una rama para proba esto
 - Disable proxy generation, for all by default and only add this with RemoteService decorator. 4
-
+- Add crud of in basic theme, razor pages.
 
 # Improvement
 - Localization json
@@ -77,4 +73,5 @@ Pasos
 - Add json secret file
 - Added logger
 - when call remote service error, add jquery extensions for use abp.ajax, check where is located this function.
-
+- Agregar las librerias base de abp, front para poder probar, 1
+- Add localization only for test, how works                 3, hay otro ejemplo ya hecho, o crear una rama para proba esto
