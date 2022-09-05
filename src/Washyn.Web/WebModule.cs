@@ -22,6 +22,7 @@ using Volo.Abp.Autofac;
 using Volo.Abp.Http.Client;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
+using Volo.Abp.Timing;
 using Volo.Abp.VirtualFileSystem;
 using Washyn.Application;
 using Washyn.EntityFrameworkCore;
@@ -102,28 +103,11 @@ namespace Washyn.Web
             context.Services.AddRazorPages();
             ConfigureLocalizationServices();
             
-            // TODO: configure clock kind, to Peru UTC - 5
-            
-            //////////////////////////////
-            CultureInfo[] supportedCultures = new[]
+            Configure<AbpClockOptions>(options =>
             {
-                new CultureInfo("es-pe"),
-                new CultureInfo("ar"),
-                new CultureInfo("en")
-            };
-
-            context.Services.Configure<RequestLocalizationOptions>(options =>
-            {
-                options.DefaultRequestCulture = new RequestCulture("es-pe");
-                options.SupportedCultures = supportedCultures;
-                options.SupportedUICultures = supportedCultures;
-                options.RequestCultureProviders = new List<IRequestCultureProvider>
-                {
-                    new QueryStringRequestCultureProvider(),
-                    new CookieRequestCultureProvider(),
-                };
+                options.Kind = DateTimeKind.Utc;
             });
-            /////////////////////////////////
+            
             
         }
         
@@ -133,17 +117,16 @@ namespace Washyn.Web
             Configure<AbpLocalizationOptions>(options =>
             {
                 // options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                // options.Languages.Add(new LanguageInfo("es-pe", "es-pe", "Español Peru"));
+                options.Languages.Add(new LanguageInfo("es-pe", "es-pe", "Español Peru"));
                 // options.Languages.Add(new LanguageInfo("es", "es", "Español"));
             });
-            
-            // CultureInfo.CurrentCulture = new CultureInfo("es-pe");
         }
         
         // this for get html culture
         // document.documentElement.lang
         // this return es-pe en or empty
         // in this case use default lang browser
+        // or can use abp settings for get culture
         
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
@@ -162,8 +145,7 @@ namespace Washyn.Web
             }
 
             // This works with AbpLocalizationOptions
-            // app.UseAbpRequestLocalization();
-            app.UseRequestLocalization();
+            app.UseAbpRequestLocalization();
             
             
             app.UseHttpsRedirection();

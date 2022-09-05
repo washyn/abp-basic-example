@@ -5,21 +5,33 @@
     // Layout = null;
 }
 
-@* <!DOCTYPE html> *@
-@* *@
-@* <html> *@
-@* <head> *@
-@*     <title></title> *@
-@* </head> *@
-@* <body> *@
-@* <div> *@
-@*      *@
-@* </div> *@
-@* </body> *@
-@* </html> *@
+<hr>
+
+<h5 class="text-center">TimeZones for country</h5>
+
+<ul>
+    @foreach (var item in Model.TimeZones)
+    {
+        <li>
+            @item.Key - @item.Value
+        </li>
+    }
+</ul>
+
+<h5 class="text-center">TimeZones ids </h5>
+@foreach (var item in Model.TimeZoneIds)
+{
+    <li>
+        @item
+    </li>
+}
 
 
-<h5>test</h5>
+<h2>Windows Format is : @Model.WindowsFormat</h2>
+
+<hr>
+
+<h5 class="text-center">test</h5>
 
 <abp-card>
     <abp-card-header>
