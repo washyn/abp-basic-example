@@ -35,10 +35,10 @@ namespace Washyn.Web
         typeof(AbpAutofacModule),
         //typeof(AbpHttpClientModule),
         typeof(AbpAspNetCoreMvcModule),
-        typeof(AbpAspNetCoreMvcUiBundlingModule),
-        typeof(AbpAspNetCoreMvcUiThemeSharedModule))]
+        typeof(AbpAspNetCoreMvcUiBundlingModule))]
     [DependsOn(typeof(AbpAutofacModule))]
     [DependsOn(typeof(AbpAspNetCoreSerilogModule))]
+    //[DependsOn(typeof(AbpAspNetCoreMvcUiThemeSharedModule))]
     [DependsOn(typeof(AbpAspNetCoreMvcUiBasicThemeModule))]
     public class WebModule : AbpModule
     {
@@ -116,7 +116,7 @@ namespace Washyn.Web
         {
             Configure<AbpLocalizationOptions>(options =>
             {
-                // options.Languages.Add(new LanguageInfo("en", "en", "English"));
+                options.Languages.Add(new LanguageInfo("en", "en", "English"));
                 options.Languages.Add(new LanguageInfo("es-pe", "es-pe", "Español Peru"));
                 // options.Languages.Add(new LanguageInfo("es", "es", "Español"));
             });
