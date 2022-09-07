@@ -23,9 +23,11 @@ using Volo.Abp.Http.Client;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.Timing;
+using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using Washyn.Application;
 using Washyn.EntityFrameworkCore;
+using Washyn.Web.Menus;
 
 namespace Washyn.Web
 {
@@ -101,7 +103,9 @@ namespace Washyn.Web
             });
 
             context.Services.AddRazorPages();
+            
             ConfigureLocalizationServices();
+            ConfigureNavigationServices();
             
             Configure<AbpClockOptions>(options =>
             {
@@ -109,6 +113,14 @@ namespace Washyn.Web
             });
             
             
+        }
+        
+        private void ConfigureNavigationServices()
+        {
+            Configure<AbpNavigationOptions>(options =>
+            {
+                options.MenuContributors.Add(new CustomAppMenuContributor());
+            });
         }
         
         // use with abp request localization
