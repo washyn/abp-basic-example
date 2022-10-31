@@ -14,6 +14,7 @@
         autoWidth: false,
         scrollCollapse: true,
         order: [[0, "asc"]],
+        lengthChange: false,
         ajax: abp.libs.datatables.createAjax(service.getList),
         columnDefs: [
             {

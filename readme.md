@@ -57,7 +57,7 @@ Pasos
 ``` -->
 
 # TODO:
-
+- Fix localization resource, in backend and frontend
 - Agregar Ejemplo de domain service, test, 2
 - Agregar ejemplos de test en todas las capas, 2
 - Disable proxy generation, for all by default and only add this with RemoteService decorator. 4
