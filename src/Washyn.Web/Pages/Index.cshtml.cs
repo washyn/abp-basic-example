@@ -2,7 +2,7 @@
 
 namespace Washyn.Web.Pages
 {
-    public class ExamplePage : PageModel
+    public class IndexPage : PageModel
     {
         public void OnGet()
         {

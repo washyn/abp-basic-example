@@ -74,6 +74,8 @@ namespace Washyn.AdminLteTheme
         }
 
 
+        // Se comenta para poder usar el tema en otro proyecto.
+        
         // public override void OnApplicationInitialization(ApplicationInitializationContext context)
         // {
         //     var app = context.GetApplicationBuilder();

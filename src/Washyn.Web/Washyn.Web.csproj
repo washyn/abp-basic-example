@@ -25,6 +25,13 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\Components\Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\Components\ControlSidebar\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\Components\Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\Components\MainSidebarContainer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\Components\Navbar\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\Error.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
   </ItemGroup>
 
 </Project>

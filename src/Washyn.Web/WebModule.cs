@@ -30,8 +30,6 @@ namespace Washyn.Web
     [DependsOn(
         typeof(ApplicationModule),
         typeof(EntityFrameworkCoreModule),
-
-        //typeof(AbpHttpClientModule),
         typeof(AbpAspNetCoreMvcModule) ,
         typeof(AbpAspNetCoreMvcUiBundlingModule),
         typeof(AbpAspNetCoreMvcUiThemeSharedModule)
@@ -44,7 +42,7 @@ namespace Washyn.Web
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
 
-            context.Services.AddControllersWithViews();
+            // context.Services.AddControllersWithViews();
             context.Services.AddRazorPages();
 
             Configure<AbpVirtualFileSystemOptions>(options =>
@@ -124,13 +122,14 @@ namespace Washyn.Web
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
-            });
+            app.UseConfiguredEndpoints();
+            // app.UseEndpoints(endpoints =>
+            // {
+            //     endpoints.MapControllerRoute(
+            //         name: "default",
+            //         pattern: "{controller=Home}/{action=Index}/{id?}");
+            //     endpoints.MapRazorPages();
+            // });
         }
 
         public override void PostConfigureServices(ServiceConfigurationContext context)
