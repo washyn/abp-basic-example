@@ -1,23 +1,20 @@
 # Abp as aspnetboilerplate, with 4 layers
 
-This is one soluction create fron scractc about example of use abp framework as traditional way(aspnetboilerplate) with 4 layers.
+This is one soluction of admin lte template for abp 4.4.4 .
 
 
 
 # Done
 - Add bundle generation
 - Create proxy scripts
-
-# TODO
-- Add localization only for test, how works
-- Disable proxy generation, for all by default and only add this with RemoteService decorator.
-- Add front libs(bundle)
-- Add tag helpers
+- Add localization only for test, how works(this example is in another branch)
 - Add crud with razor pages and theme admin lte.
-
-# FIX 
+- Add tag helpers
+- Add front libs(bundle)
 - when call remote service error, add jquery extensions for use abp.ajax, check where is located this function.
 
+# TODO
+- Disable proxy generation, for all by default and only add this with RemoteService decorator.
 
 
 # Notes
