@@ -35,12 +35,10 @@ namespace Washyn.Web
         typeof(ApplicationModule),
         typeof(EntityFrameworkCoreModule),
         typeof(AbpAutofacModule),
-        //typeof(AbpHttpClientModule),
         typeof(AbpAspNetCoreMvcModule),
         typeof(AbpAspNetCoreMvcUiBundlingModule))]
     [DependsOn(typeof(AbpAutofacModule))]
     [DependsOn(typeof(AbpAspNetCoreSerilogModule))]
-    //[DependsOn(typeof(AbpAspNetCoreMvcUiThemeSharedModule))]
     [DependsOn(typeof(AbpAspNetCoreMvcUiBasicThemeModule))]
     public class WebModule : AbpModule
     {
@@ -48,8 +46,7 @@ namespace Washyn.Web
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
-
-            context.Services.AddControllersWithViews();
+            
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
@@ -170,14 +167,7 @@ namespace Washyn.Web
             // app.UseAuditing(); ??? midleware de audit, escribe en el logger o ayuda a en logs de base de datos 
             app.UseAbpSerilogEnrichers();
             
-            
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
-            });
+            app.UseConfiguredEndpoints();
         }
     }
 }

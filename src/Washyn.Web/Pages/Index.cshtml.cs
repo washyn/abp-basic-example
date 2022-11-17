@@ -7,7 +7,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
 
 namespace Washyn.Web.Pages
 {
-    public class TestPage : AbpPageModel
+    public class Index : AbpPageModel
     {
         public IDictionary<string, string> TimeZones { get; set; }
         public List<string> TimeZoneIds { get; set; }
