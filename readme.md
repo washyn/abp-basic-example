@@ -21,3 +21,9 @@ This is one soluction create fron scractc about example of use abp framework as 
 - Add bundle generation
 - create proxy scripts
 - Add crud of in basic theme, razor pages
+
+
+# Screenshots
+
+![alt](/images/screencapture-localhost-5001-2022-11-16-19_54_57.png)
+![alt](/images/screencapture-localhost-5001-Crud-2022-11-16-19_55_14.png)
