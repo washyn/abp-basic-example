@@ -7,7 +7,7 @@ This is one soluction create fron scractc about example of use abp framework as 
 - Disable proxy generation, for all by default and only add this with RemoteService decorator. 4
 
 # Improvement
-- Add localization json
+- Test
 
 # DONE
 - Agregar data seeder
@@ -21,7 +21,7 @@ This is one soluction create fron scractc about example of use abp framework as 
 - Add bundle generation
 - create proxy scripts
 - Add crud of in basic theme, razor pages
-
+- Add localization json
 
 # Screenshots
 
