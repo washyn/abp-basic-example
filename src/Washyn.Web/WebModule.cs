@@ -14,6 +14,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theming;
+using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
 using Volo.Abp.Http.Client;
@@ -35,6 +36,7 @@ namespace Washyn.Web
         typeof(AbpAspNetCoreMvcUiThemeSharedModule)
         )]
     [DependsOn(typeof(AbpAutofacModule))]
+    // [DependsOn(typeof(AbpAspNetCoreSerilogModule))]
     public class WebModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
@@ -121,7 +123,7 @@ namespace Washyn.Web
             app.UseRouting();
 
             app.UseAuthorization();
-
+            // app.UseAbpSerilogEnrichers(); for show current user details in logger
             app.UseConfiguredEndpoints();
             // app.UseEndpoints(endpoints =>
             // {
