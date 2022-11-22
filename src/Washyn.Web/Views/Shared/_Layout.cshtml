@@ -9,16 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Washyn.Web</title>
     
-    @* <abp-style-bundle name="@CustomBundles.Styles.Global" /> *@
-    @* <abp-style-bundle name="@StandardBundles.Styles.Global" /> *@
-    
     <abp-style-bundle name="StylesBundle">
-        @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
-        @* <link rel="stylesheet" href="~/css/site.css" /> *@
-
+        <abp-style type="@(typeof(CoreStyleContributor))"></abp-style>
         <abp-style src="/lib/bootstrap/dist/css/bootstrap.min.css" />
         <abp-style src="/css/site.css" />
-        <abp-style type="@(typeof(CoreStyleContributor))"></abp-style>
     </abp-style-bundle>
     
 </head>
@@ -59,15 +53,9 @@
         </div>
     </footer>
 
-
-    @* <abp-script-bundle name="@CustomBundles.Scripts.Global" /> *@
-    @* <abp-script-bundle name="@StandardBundles.Scripts.Global" /> *@
-
 <abp-script-bundle name="ScriptBundle">
     <abp-script type="@(typeof(JQueryScriptContributor))"></abp-script>
-    @* <abp-script src="/lib/jquery/dist/jquery.min.js"></abp-script> *@
     <abp-script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></abp-script>
-    <abp-script type="@(typeof(CoreScriptContributor))"></abp-script>
     <abp-script src="/js/site.js"></abp-script>
 </abp-script-bundle>
 
