@@ -8,11 +8,11 @@ This is one soluction of admin lte template for abp 4.4.4 .
 - Add crud with razor pages and theme admin lte.
 - Add tag helpers
 - Add front libs(bundle)
-- when call remote service error, add jquery extensions for use abp.ajax, check where is located this function.
+- When call remote service error, add jquery extensions for use abp.ajax, check where is located this function.
+- Add Serilog as logger.
 
 # TODO
 - Disable proxy generation, for all by default and only add this with RemoteService decorator.
-- Add Serilog as logger.
 - Mover el tema a Washyn.AspNetCore.Mvc.UI.Theme.AdminLte y crear un proyecto ahi para usar el tema con los modulos por defecto de abp framework.
 - Remove un used code and comments.
 
