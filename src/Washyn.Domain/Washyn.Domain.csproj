@@ -2,11 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>$(FrameworkVersion)</TargetFramework>
+
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Core" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\Washin\*.json" />
+    <Content Remove="Localization\Washin\*.json" />
+  </ItemGroup>
+
+
 
 </Project>

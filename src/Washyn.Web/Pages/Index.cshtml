@@ -1,7 +1,11 @@
 ﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Alert
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Blockquote
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Card
+@using Washyn.Domain.Localization
 @model Washyn.Web.Pages.Index
-
-
+@inject IHtmlLocalizer<WashinResource> L
 @{
     // Layout = null;
 }
@@ -42,6 +46,13 @@
     </abp-card-header>
     <abp-card-body>
         Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.
+        
+        <br>
+        
+        <strong>Example localization: </strong>
+        <p>
+            @(L["KeyLocalizationExample"])
+        </p>
         
     </abp-card-body>
     <abp-card-footer>

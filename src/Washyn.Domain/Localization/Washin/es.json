@@ -1,0 +1,6 @@
+﻿{
+  "culture": "es",
+  "texts": {
+    "KeyLocalizationExample": "Example custom localization from json file."
+  }
+}

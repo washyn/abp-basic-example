@@ -4,14 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Globalization;
+using System.IO;
 using Volo.Abp;
 using Volo.Abp.AspNetCore;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations;
+using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
@@ -26,6 +29,8 @@ using Volo.Abp.Timing;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using Washyn.Application;
+using Washyn.Domain;
+using Washyn.Domain.Localization;
 using Washyn.EntityFrameworkCore;
 using Washyn.Web.Menus;
 
@@ -48,10 +53,10 @@ namespace Washyn.Web
             var configuration = context.Services.GetConfiguration();
             
 
-            Configure<AbpVirtualFileSystemOptions>(options =>
-            {
-                options.FileSets.AddEmbedded<WebModule>("Washyn.Web");
-            });
+            // Configure<AbpVirtualFileSystemOptions>(options =>
+            // {
+            //     options.FileSets.AddEmbedded<WebModule>("Washyn.Web");
+            // });
 
             // for generate proxy for app services
             Configure<AbpAspNetCoreMvcOptions>(options =>
@@ -66,7 +71,8 @@ namespace Washyn.Web
                 options.IsEnabled = false; //Disables the auditing system
             });
 
-
+            ConfigureVirtualFileSystem(hostingEnvironment);
+                
             // context.Services.AddHttpClientProxies(
             //     typeof(ApplicationModule).Assembly,
             //     asDefaultServices: false
@@ -168,6 +174,32 @@ namespace Washyn.Web
             app.UseAbpSerilogEnrichers();
             
             app.UseConfiguredEndpoints();
+        }
+        
+        public override void PreConfigureServices(ServiceConfigurationContext context)
+        {
+            context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
+            {
+                options.AddAssemblyResource(
+                    typeof(WashinResource),
+                    typeof(DomainModule).Assembly,
+                    typeof(ApplicationModule).Assembly,
+                    typeof(WebModule).Assembly
+                );
+            });
+        }
+        
+        private void ConfigureVirtualFileSystem(IWebHostEnvironment hostingEnvironment)
+        {
+            if (hostingEnvironment.IsDevelopment())
+            {
+                Configure<AbpVirtualFileSystemOptions>(options =>
+                {
+                    options.FileSets.ReplaceEmbeddedByPhysical<DomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}Washyn.Domain"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<ApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}Washyn.Application"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<WebModule>(hostingEnvironment.ContentRootPath);
+                });
+            }
         }
     }
 }
