@@ -15,7 +15,7 @@ namespace Washyn.Web
     {
         public static int Main(string[] args)
         {
-            var logger = new LoggerConfiguration()
+            Log.Logger = new LoggerConfiguration()
 #if DEBUG
                 .MinimumLevel.Debug()
 #else
