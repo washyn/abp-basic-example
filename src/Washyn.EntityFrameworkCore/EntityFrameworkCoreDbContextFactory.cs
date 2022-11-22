@@ -20,12 +20,10 @@ namespace Washyn.EntityFrameworkCore
 
         public EntityFrameworkCoreDbContext CreateDbContext(string[] args)
         {
-            //TODO: check if this need
             var configuration = BuildConfiguration();
 
             var builder = new DbContextOptionsBuilder<EntityFrameworkCoreDbContext>()
                 .UseSqlServer(configuration.GetConnectionString("Default"));
-            // Console.WriteLine(configuration.GetConnectionString("Default"));
             return new EntityFrameworkCoreDbContext(builder.Options);
         }
     }

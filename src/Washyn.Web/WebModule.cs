@@ -4,21 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Globalization;
+using System.IO;
 using Volo.Abp;
 using Volo.Abp.AspNetCore;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations;
+using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
+using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
 using Volo.Abp.Http.Client;
+using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
+using Volo.Abp.Timing;
+using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using Washyn.Application;
+using Washyn.Domain;
+using Washyn.Domain.Localization;
 using Washyn.EntityFrameworkCore;
+using Washyn.Web.Menus;
 
 namespace Washyn.Web
 {
@@ -26,24 +40,23 @@ namespace Washyn.Web
         typeof(ApplicationModule),
         typeof(EntityFrameworkCoreModule),
         typeof(AbpAutofacModule),
-        //typeof(AbpHttpClientModule),
         typeof(AbpAspNetCoreMvcModule),
-        typeof(AbpAspNetCoreMvcUiBundlingModule),
-        typeof(AbpAspNetCoreMvcUiThemeSharedModule))]
+        typeof(AbpAspNetCoreMvcUiBundlingModule))]
     [DependsOn(typeof(AbpAutofacModule))]
+    [DependsOn(typeof(AbpAspNetCoreSerilogModule))]
+    [DependsOn(typeof(AbpAspNetCoreMvcUiBasicThemeModule))]
     public class WebModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
+            
 
-            context.Services.AddControllersWithViews();
-
-            Configure<AbpVirtualFileSystemOptions>(options =>
-            {
-                options.FileSets.AddEmbedded<WebModule>("Washyn.Web");
-            });
+            // Configure<AbpVirtualFileSystemOptions>(options =>
+            // {
+            //     options.FileSets.AddEmbedded<WebModule>("Washyn.Web");
+            // });
 
             // for generate proxy for app services
             Configure<AbpAspNetCoreMvcOptions>(options =>
@@ -58,7 +71,8 @@ namespace Washyn.Web
                 options.IsEnabled = false; //Disables the auditing system
             });
 
-
+            ConfigureVirtualFileSystem(hostingEnvironment);
+                
             // context.Services.AddHttpClientProxies(
             //     typeof(ApplicationModule).Assembly,
             //     asDefaultServices: false
@@ -90,8 +104,45 @@ namespace Washyn.Web
                 //             .AddContributors(typeof(BasicThemeGlobalScriptContributor));
                 //     });
             });
-        }
 
+            context.Services.AddRazorPages();
+            
+            ConfigureLocalizationServices();
+            ConfigureNavigationServices();
+            
+            Configure<AbpClockOptions>(options =>
+            {
+                options.Kind = DateTimeKind.Utc;
+            });
+            
+            
+        }
+        
+        private void ConfigureNavigationServices()
+        {
+            Configure<AbpNavigationOptions>(options =>
+            {
+                options.MenuContributors.Add(new CustomAppMenuContributor());
+            });
+        }
+        
+        // use with abp request localization
+        private void ConfigureLocalizationServices()
+        {
+            Configure<AbpLocalizationOptions>(options =>
+            {
+                options.Languages.Add(new LanguageInfo("en", "en", "English"));
+                options.Languages.Add(new LanguageInfo("es-pe", "es-pe", "Español Peru"));
+                // options.Languages.Add(new LanguageInfo("es", "es", "Español"));
+            });
+        }
+        
+        // this for get html culture
+        // document.documentElement.lang
+        // this return es-pe en or empty
+        // in this case use default lang browser
+        // or can use abp settings for get culture
+        
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
@@ -108,19 +159,47 @@ namespace Washyn.Web
                 app.UseHsts();
             }
 
+            // This works with AbpLocalizationOptions
+            app.UseAbpRequestLocalization();
+            
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+            // app.UseAuthentication();
+            // app.UseUnitOfWork();
+            // app.UseAuthorization();
+            // app.UseAuditing(); ??? midleware de audit, escribe en el logger o ayuda a en logs de base de datos 
+            app.UseAbpSerilogEnrichers();
+            
+            app.UseConfiguredEndpoints();
+        }
+        
+        public override void PreConfigureServices(ServiceConfigurationContext context)
+        {
+            context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                options.AddAssemblyResource(
+                    typeof(WashinResource),
+                    typeof(DomainModule).Assembly,
+                    typeof(ApplicationModule).Assembly,
+                    typeof(WebModule).Assembly
+                );
             });
+        }
+        
+        private void ConfigureVirtualFileSystem(IWebHostEnvironment hostingEnvironment)
+        {
+            if (hostingEnvironment.IsDevelopment())
+            {
+                Configure<AbpVirtualFileSystemOptions>(options =>
+                {
+                    options.FileSets.ReplaceEmbeddedByPhysical<DomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}Washyn.Domain"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<ApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}Washyn.Application"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<WebModule>(hostingEnvironment.ContentRootPath);
+                });
+            }
         }
     }
 }
