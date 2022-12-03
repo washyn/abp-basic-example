@@ -1,5 +1,5 @@
 # Abp as aspnetboilerplate, with 4 layers
-This is one soluction create fron scractc about example of use abp framework as traditional way(aspnetboilerplate) with 4 layers.
+This is one soluction create fron scratch about example of use abp framework as traditional way(aspnetboilerplate) with 4 layers.
 
 ## TODO:
 - Agregar Ejemplo de domain service, test, 2
@@ -25,5 +25,5 @@ This is one soluction create fron scractc about example of use abp framework as 
 
 ## Screenshots
 
-![alt](/images/screencapture-localhost-5001-2022-11-16-19_54_57.png)
-![alt](/images/screencapture-localhost-5001-Crud-2022-11-16-19_55_14.png)
+
+![alt](/images/screencapture-localhost-5001-swagger-index-html-2022-12-02-16_18_03.png)
