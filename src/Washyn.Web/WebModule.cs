@@ -1,28 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Globalization;
 using System.IO;
 using Volo.Abp;
-using Volo.Abp.AspNetCore;
 using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
-using Volo.Abp.Http.Client;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.Timing;
@@ -36,12 +25,11 @@ using Washyn.Web.Menus;
 
 namespace Washyn.Web
 {
-    [DependsOn(
-        typeof(ApplicationModule),
-        typeof(EntityFrameworkCoreModule),
-        typeof(AbpAutofacModule),
-        typeof(AbpAspNetCoreMvcModule),
-        typeof(AbpAspNetCoreMvcUiBundlingModule))]
+    [DependsOn(typeof(ApplicationModule))]
+    [DependsOn(typeof(EntityFrameworkCoreModule))]
+    [DependsOn(typeof(AbpAutofacModule))]
+    [DependsOn(typeof(AbpAspNetCoreMvcModule))]
+    [DependsOn(typeof(AbpAspNetCoreMvcUiBundlingModule))]
     [DependsOn(typeof(AbpAutofacModule))]
     [DependsOn(typeof(AbpAspNetCoreSerilogModule))]
     [DependsOn(typeof(AbpAspNetCoreMvcUiBasicThemeModule))]
@@ -52,72 +40,37 @@ namespace Washyn.Web
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
             
-
-            // Configure<AbpVirtualFileSystemOptions>(options =>
-            // {
-            //     options.FileSets.AddEmbedded<WebModule>("Washyn.Web");
-            // });
-
-            // for generate proxy for app services
-            Configure<AbpAspNetCoreMvcOptions>(options =>
-            {
-                options
-                    .ConventionalControllers
-                    .Create(typeof(ApplicationModule).Assembly);
-            });
-
             Configure<AbpAuditingOptions>(options =>
             {
                 options.IsEnabled = false; //Disables the auditing system
             });
-
-            ConfigureVirtualFileSystem(hostingEnvironment);
-                
-            // context.Services.AddHttpClientProxies(
-            //     typeof(ApplicationModule).Assembly,
-            //     asDefaultServices: false
-            // );
-
-
-            // Configure<DynamicJavaScriptProxyOptions>(options => {
-            //     options.EnabledModules.Add("identity");
-            // });
-
-
+            
             Configure<AbpBundlingOptions>(options =>
             {
-                // options
-                //     .StyleBundles
-                //     .Add(BasicThemeBundles.Styles.Global, bundle =>
-                //     {
-                //         bundle
-                //             .AddBaseBundles(StandardBundles.Styles.Global)
-                //             .AddContributors(typeof(BasicThemeGlobalStyleContributor));
-                //     });
-                //
-                // options
-                //     .ScriptBundles
-                //     .Add(BasicThemeBundles.Scripts.Global, bundle =>
-                //     {
-                //         bundle
-                //             .AddBaseBundles(StandardBundles.Scripts.Global)
-                //             .AddContributors(typeof(BasicThemeGlobalScriptContributor));
-                //     });
             });
-
-            context.Services.AddRazorPages();
-            
-            ConfigureLocalizationServices();
-            ConfigureNavigationServices();
             
             Configure<AbpClockOptions>(options =>
             {
                 options.Kind = DateTimeKind.Utc;
             });
             
-            
+            ConfigureAutoApiControllers();
+            ConfigureVirtualFileSystem(hostingEnvironment);
+            ConfigureLocalizationServices();
+            ConfigureNavigationServices();
         }
-        
+
+        #region Configurations
+
+        private void ConfigureAutoApiControllers()
+        {
+            Configure<AbpAspNetCoreMvcOptions>(options =>
+            {
+                options
+                    .ConventionalControllers
+                    .Create(typeof(ApplicationModule).Assembly);
+            });
+        }
         private void ConfigureNavigationServices()
         {
             Configure<AbpNavigationOptions>(options =>
@@ -126,56 +79,16 @@ namespace Washyn.Web
             });
         }
         
-        // use with abp request localization
         private void ConfigureLocalizationServices()
         {
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
                 options.Languages.Add(new LanguageInfo("es-pe", "es-pe", "Español Peru"));
-                // options.Languages.Add(new LanguageInfo("es", "es", "Español"));
+                options.Languages.Add(new LanguageInfo("es", "es", "Español"));
             });
         }
-        
-        // this for get html culture
-        // document.documentElement.lang
-        // this return es-pe en or empty
-        // in this case use default lang browser
-        // or can use abp settings for get culture
-        
-        public override void OnApplicationInitialization(ApplicationInitializationContext context)
-        {
-            var app = context.GetApplicationBuilder();
-            var env = context.GetEnvironment();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            // This works with AbpLocalizationOptions
-            app.UseAbpRequestLocalization();
-            
-            
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-            // app.UseAuthentication();
-            // app.UseUnitOfWork();
-            // app.UseAuthorization();
-            // app.UseAuditing(); ??? midleware de audit, escribe en el logger o ayuda a en logs de base de datos 
-            app.UseAbpSerilogEnrichers();
-            
-            app.UseConfiguredEndpoints();
-        }
-        
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
             context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
@@ -200,6 +113,35 @@ namespace Washyn.Web
                     options.FileSets.ReplaceEmbeddedByPhysical<WebModule>(hostingEnvironment.ContentRootPath);
                 });
             }
+        }
+        
+        #endregion
+      
+        public override void OnApplicationInitialization(ApplicationInitializationContext context)
+        {
+            var app = context.GetApplicationBuilder();
+            var env = context.GetEnvironment();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+
+            // This works with AbpLocalizationOptions
+            app.UseAbpRequestLocalization();
+            
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseRouting();
+            app.UseAbpSerilogEnrichers();
+            app.UseConfiguredEndpoints();
         }
     }
 }
