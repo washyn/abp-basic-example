@@ -18,10 +18,6 @@ using Volo.Abp.AspNetCore;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations;
 using Volo.Abp.AspNetCore.Mvc.Localization;
-using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
@@ -63,7 +59,7 @@ namespace Washyn.Web
             {
                 options.Kind = DateTimeKind.Utc;
             });
-            
+
             ConfigureConventionalControllers();
             ConfigureLocalizationServices();
             ConfigureVirtualFileSystem(hostingEnvironment);
@@ -79,7 +75,6 @@ namespace Washyn.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseErrorPage();
             }
             else
             {
@@ -120,7 +115,6 @@ namespace Washyn.Web
             });
         }
         
-        // Improve: disable tenant module.
         private void ConfigureConventionalControllers()
         {
             Configure<AbpAspNetCoreMvcOptions>(options =>
