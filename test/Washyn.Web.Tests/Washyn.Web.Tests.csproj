@@ -10,7 +10,7 @@
     <PackageReference Include="Volo.Abp.Core" Version="$(AbpVersion)" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Washyn.Application\Washyn.Application.csproj" />
+    <ProjectReference Include="..\Washyn.Tests\Washyn.Tests.csproj" />
     <ProjectReference Include="..\..\src\Washyn.Web\Washyn.Web.csproj" />
   </ItemGroup>
 
