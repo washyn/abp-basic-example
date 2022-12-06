@@ -1,23 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Globalization;
 using System.IO;
-using System.Linq;
 using Volo.Abp;
+using Volo.Abp.AspNetCore;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
+using Volo.Abp.Http.Client;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.Timing;
+using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using Washyn.Application;
 using Washyn.Domain;
@@ -26,6 +35,7 @@ using Washyn.EntityFrameworkCore;
 
 namespace Washyn.Web
 {
+
     [DependsOn(typeof(ApplicationModule))]
     [DependsOn(typeof(EntityFrameworkCoreModule))]
     [DependsOn(typeof(AbpAutofacModule))]
@@ -44,18 +54,17 @@ namespace Washyn.Web
             {
                 options.IsEnabled = false;
             });
-
+            
             Configure<AbpClockOptions>(options =>
             {
                 options.Kind = DateTimeKind.Utc;
             });
-            
+
             ConfigureConventionalControllers();
             ConfigureLocalizationServices();
             ConfigureVirtualFileSystem(hostingEnvironment);
             ConfigureCors(context, configuration);
             ConfigureSwaggerServices(context, configuration);
-            ConfigureAutoApiControllers();
         }
         
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -72,17 +81,23 @@ namespace Washyn.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
+
+            // This works with AbpLocalizationOptions
             app.UseAbpRequestLocalization();
+            
             app.UseStaticFiles();
             app.UseRouting();
+
             app.UseCors();
+
             app.UseUnitOfWork();
             app.UseSwagger();
+            
             app.UseAbpSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Example API");
             });
+
             app.UseAbpSerilogEnrichers();
             app.UseConfiguredEndpoints();
         }
@@ -99,20 +114,7 @@ namespace Washyn.Web
                 );
             });
         }
-
-
-        #region Configurations
-
-        private void ConfigureAutoApiControllers()
-        {
-            Configure<AbpAspNetCoreMvcOptions>(options =>
-            {
-                options
-                    .ConventionalControllers
-                    .Create(typeof(ApplicationModule).Assembly);
-            });
-        }
-
+        
         private void ConfigureConventionalControllers()
         {
             Configure<AbpAspNetCoreMvcOptions>(options =>
@@ -133,7 +135,7 @@ namespace Washyn.Web
                 });
             }
         }
-
+        
         private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
         {
             context.Services
@@ -177,7 +179,5 @@ namespace Washyn.Web
                 options.Languages.Add(new LanguageInfo("es", "es", "Español"));
             });
         }
-        
-        #endregion
     }
 }
