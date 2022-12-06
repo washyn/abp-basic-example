@@ -8,6 +8,7 @@ This is one soluction create fron scractc about example of use abp framework as 
 
 ## Improvement
 - Test
+  - Add manger service and test this.
 
 ## DONE
 - Agregar data seeder
