@@ -5,11 +5,13 @@ using Washyn.Application;
 namespace Washyn.Web.Tests
 {
     [DependsOn(
-        typeof(AbpAspNetCoreTestBaseModule),
         typeof(ApplicationModule),
-        typeof(WebModule)
+        typeof(WebModule),
+        
+        typeof(AbpAspNetCoreTestBaseModule)
     )]
-    public class Class1 : AbpModule
+    public class WebTestModule : AbpModule
     {
+        // This for test, web layer, for razor pages or
     }
 }

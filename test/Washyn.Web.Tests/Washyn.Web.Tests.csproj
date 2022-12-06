@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+    
     <PackageReference Include="Volo.Abp.AspNetCore.TestBase" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Core" Version="$(AbpVersion)" />
   </ItemGroup>
@@ -12,4 +13,13 @@
     <ProjectReference Include="..\..\src\Washyn.Application\Washyn.Application.csproj" />
     <ProjectReference Include="..\..\src\Washyn.Web\Washyn.Web.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="xunit.runner.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  
+  
 </Project>
