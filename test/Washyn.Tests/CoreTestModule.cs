@@ -1,7 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;
 using Volo.Abp.Autofac;
 using Volo.Abp.Data;
+using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
 using Volo.Abp.Modularity;
 using Volo.Abp.Threading;
@@ -24,7 +29,9 @@ namespace Washyn.Tests
         // Application
         // Domain
         // EntityFrameworkCore
-
+        
+        private SqliteConnection _sqliteConnection;
+        
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
             base.PreConfigureServices(context);
@@ -34,9 +41,11 @@ namespace Washyn.Tests
         {
             // AbpBackgroundJobOptions, not exists
             // context.Services.AddAlwaysAllowAuthorization();
+            
+            ConfigureInMemorySqlite(context.Services);
         }
 
-        #region MyRegion
+
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
@@ -56,6 +65,38 @@ namespace Washyn.Tests
             });
         }
 
-        #endregion
+        public override void OnApplicationShutdown(ApplicationShutdownContext context)
+        {
+            _sqliteConnection.Dispose();
+        }
+
+        private void ConfigureInMemorySqlite(IServiceCollection serviceCollection)
+        {
+            _sqliteConnection = CreateDatabaseAndGetConnection();
+            serviceCollection.Configure<AbpDbContextOptions>(options =>
+            {
+                options.Configure(context =>
+                {
+                    context.DbContextOptions.UseSqlite(_sqliteConnection);
+                });
+            });
+        }
+        
+        private static SqliteConnection CreateDatabaseAndGetConnection()
+        {
+            var connection = new SqliteConnection("Data Source=:memory:");
+            connection.Open();
+
+            var options = new DbContextOptionsBuilder<EntityFrameworkCoreDbContext>()
+                .UseSqlite(connection)
+                .Options;
+            using (var context = new EntityFrameworkCoreDbContext(options))
+            {
+                context.GetService<IRelationalDatabaseCreator>()
+                    .CreateTables();
+            }
+
+            return connection;
+        }
     }
 }
