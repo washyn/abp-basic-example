@@ -2,8 +2,8 @@
   <PropertyGroup>
 
     <AbpVersion>4.4.4</AbpVersion>
-
     <FrameworkVersion>net5.0</FrameworkVersion>
+    <AspNetFrameworkPackageVersion>5.0.*</AspNetFrameworkPackageVersion>
 
   </PropertyGroup>
 </Project>
