@@ -1,9 +1,9 @@
 <Project>
   <PropertyGroup>
 
-    <AbpVersion>7.0.0-rc.2</AbpVersion>
-    <FrameworkVersion>net7.0</FrameworkVersion>
-    <AspNetFrameworkPackageVersion>7.0.*</AspNetFrameworkPackageVersion>
+    <AbpVersion>4.4.4</AbpVersion>
+    <FrameworkVersion>net5.0</FrameworkVersion>
+    <AspNetFrameworkPackageVersion>5.0.*</AspNetFrameworkPackageVersion>
 
   </PropertyGroup>
 </Project>
