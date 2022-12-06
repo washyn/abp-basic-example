@@ -1,6 +1,6 @@
 ﻿namespace Washyn.Tests
 {
-    public class AppTestBase : TestBase<CoreTestModule>
+    public abstract class AppTestBase : TestBase<CoreTestModule>
     {
         
     }
