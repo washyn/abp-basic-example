@@ -2,12 +2,23 @@
 This is one soluction create fron scractc about example of use abp framework as traditional way(aspnetboilerplate) with 4 layers.
 
 ## TODO:
-- Agregar Ejemplo de domain service, test, 2
-- Agregar ejemplos de test en todas las capas, 2
-- Disable proxy generation, for all by default and only add this with RemoteService decorator. 4
+- Agregar Ejemplo de domain service, test
+
+
+- Test this in web module after configure abp localizations and test from frontend
+```csharp
+// test this...
+context.Services.Configure<RequestLocalizationOptions>(options =>
+{
+  options.DefaultRequestCulture = new RequestCulture("es-pe");
+});
+```
+
 
 ## Improvement
 - Test
+  - Add manger service and test this.
+  - Disable proxy generation, for all by default and only add this with RemoteService decorator.
 
 ## DONE
 - Agregar data seeder
@@ -22,6 +33,7 @@ This is one soluction create fron scractc about example of use abp framework as 
 - create proxy scripts
 - Add crud of in basic theme, razor pages
 - Add localization json
+- Agregar ejemplos de test en todas las capas
 
 ## Screenshots
 

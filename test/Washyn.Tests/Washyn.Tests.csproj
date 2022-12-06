@@ -5,11 +5,44 @@
   </PropertyGroup>
 <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+    
     <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Core" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.TestBase" Version="$(AbpVersion)" />
+
+<!--    add if use auth-->
+    <PackageReference Include="Volo.Abp.Authorization" Version="$(AbpVersion)" />
   </ItemGroup>
+
+
+    <ItemGroup>
+<!--        A friendly substitute for .NET mocking libraries-->
+        <PackageReference Include="NSubstitute" Version="4.2.2" />
+<!--        Should testing for .NET—the way assertions should be!-->
+        <PackageReference Include="Shouldly" Version="4.0.3" />
+<!--        Xunit-->
+        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="xunit.extensibility.execution" Version="2.4.1" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+    <None Remove="appsettings.json" />
+    <Content Include="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <None Remove="appsettings.secrets.json" />
+    <Content Include="appsettings.secrets.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+</ItemGroup>
+    
+    
 <ItemGroup>
   <ProjectReference Include="..\..\src\Washyn.Application\Washyn.Application.csproj" />
   <ProjectReference Include="..\..\src\Washyn.EntityFrameworkCore\Washyn.EntityFrameworkCore.csproj" />
