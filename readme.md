@@ -2,7 +2,6 @@
 This is one soluction create fron scratch about example of use abp framework as traditional way(aspnetboilerplate) with 4 layers.
 
 ## TODO:
-- Agregar Ejemplo de domain service, test
 
 
 - Test this in web module after configure abp localizations and test from frontend
@@ -17,7 +16,7 @@ context.Services.Configure<RequestLocalizationOptions>(options =>
 
 ## Improvement
 - Test
-  - Add manger service and test this.
+- Add manger service and test this, Agregar Ejemplo de domain service, test
   - Disable proxy generation, for all by default and only add this with RemoteService decorator.
 
 ## DONE
