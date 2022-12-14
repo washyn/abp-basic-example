@@ -18,7 +18,8 @@ context.Services.Configure<RequestLocalizationOptions>(options =>
 - Test
 - Add manger service and test this, Agregar Ejemplo de domain service, test
   - Disable proxy generation, for all by default and only add this with RemoteService decorator.
-
+- Add docker suport
+- Add yaml file for create services
 ## DONE
 - Agregar data seeder
 - Agregar crud basico
