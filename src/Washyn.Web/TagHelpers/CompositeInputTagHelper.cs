@@ -32,6 +32,7 @@ namespace Washyn.Web.TagHelpers
             var prependInput = new TagBuilder("input");
             prependInput.Attributes.Add("type", "text");
             prependInput.AddCssClass("form-control");
+            prependInput.AddCssClass("border-right-0");
             if (!string.IsNullOrEmpty(PrependInputName))
             {
                 prependInput.Attributes.Add("name", PrependInputName);
