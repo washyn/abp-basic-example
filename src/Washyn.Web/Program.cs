@@ -24,7 +24,7 @@ namespace Washyn.Web
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
                 .Enrich.FromLogContext()
-                .WriteTo.Async(c => c.File("Logs/logs.log"))
+                .WriteTo.Async(c => c.File("Logs/logs.log", rollingInterval: RollingInterval.Day))
 #if DEBUG
                 .WriteTo.Async(c => c.Console())
 #endif
