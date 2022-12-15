@@ -3,11 +3,34 @@
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Alert
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Blockquote
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Card
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Pagination
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Table
 @using Washyn.Domain.Localization
+@using Washyn.Web.TagHelpers
 @model Washyn.Web.Pages.Index
 @inject IHtmlLocalizer<WashinResource> L
 @{
-    // Layout = null;
+    
+    // sorting: "id asc"
+    // skipCount: 
+    // 0
+    // maxResultCount: 
+    // 10
+    
+    @* <a tabindex="-1" class="page-link" href="/Components/Paginator?currentPage=10&amp;sort=id asc">10</a> *@
+    
+    // el back puede recibir esto
+    // https://localhost:5001/Components/Paginator?
+    // currentPage=9
+    // sort=id%20asc
+    
+    // from url
+    var currentPage = 1;
+    // from url
+    var sort = "id asc";
+    var pagerModel = new PagerModel(100, 10, currentPage, 10, "/Components/Paginator", sort);
+    
+    
 }
 
 <h1>Welcome to example abp basic solution with 4 layers.</h1>
@@ -60,3 +83,61 @@
         test footer
     </abp-card-footer>
 </abp-card>
+
+<br>
+
+<div class="card">
+    <div class="card-body">
+        <div class="input-group">
+            <input type="text" class="form-control">
+            <div class="input-group-prepend">
+                <span class="input-group-text">-</span>
+            </div>
+            <input type="text" class="form-control">
+        </div>
+        
+        <hr>
+        
+        <wsh-serie-input a-name="numero" p-name="serie" abp-if="true"></wsh-serie-input>
+        <hr>
+        <wsh-serie-input/>
+        <hr>
+        <wsh-serie-input a-name="testttttttt"/>
+        <hr>
+        <table class="table table-striped">
+            <thead class="rounded">
+            <tr>
+                <th>#</th>
+                <th>First</th>
+                <th>Last</th>
+                <th>Handle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>mdo</td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>fat</td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>twitter</td>
+            </tr>
+            </tbody>
+        </table>
+        @* ver que args necesita esto en el input de get  *@
+        <abp-paginator model="pagerModel" show-info="false"/>
+        
+        
+    </div>
+</div>
+
+<br>
