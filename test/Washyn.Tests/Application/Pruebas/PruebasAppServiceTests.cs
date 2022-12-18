@@ -24,7 +24,7 @@ namespace Washyn.Tests.Application.Pruebas
         public async Task GetListAsync()
         {
             // Act
-            var result = await _pruebaAppService.GetListAsync(new PagedAndSortedResultRequestDto());
+            var result = await _pruebaAppService.GetListAsync(new PruebaFilterInput());
         
             // Assert
             result.TotalCount.ShouldBe(1);
