@@ -29,6 +29,8 @@
                     ajax: {
                         url: url,
                         dataType: "json",
+                        delay: 250,
+                        cache: true,
                         data: function (params) {
                             var query = {};
                             query[filterParamName] = params.term;
@@ -56,7 +58,9 @@
                     // pr for configure theme and lang
                     theme: 'bootstrap4',
                     // Improvement: check if can be improve this.
-                    language: abp.localization.currentCulture.name
+                    language: abp.localization.currentCulture.name,
+                    allowClear: true,
+                    placeholder: { id: "", text: "" },
                 });
                 $select.on('select2:select', function (e) {
                     selectedTextInput.val(e.params.data.text);
