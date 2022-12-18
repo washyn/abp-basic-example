@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+using NUglify.Helpers;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Pagination;
@@ -31,26 +35,31 @@ namespace Washyn.Web.Pages
 
         [Inject]
         public IPruebaAppService AppService { get; set; }
+        
+        [Inject]
+        public ILogger<ExampleTablePage> Logger { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public int CurrentPage { get; set; } = 1;
         
         [BindProperty(SupportsGet = true)]
         public string Filter { get; set; } = string.Empty;
+
+        public string CustomQueryString { get; set; } = string.Empty;
         
         public PagedResultDto<PruebaDto> List { get; set; }
         public const int PageSize = 2;
+        // this an example of default way for use this
         // public PagerModel PagerModelInfo => new PagerModel(List.TotalCount, List.Items.Count, CurrentPage, PageSize, "/ExampleTablePage");
-        public PagerModel PagerModelInfo => new PagerModel(List.TotalCount, List.Items.Count, CurrentPage, PageSize, "/ExampleTablePage");
+        public PagerModel PagerModelInfo => new PagerModel(List.TotalCount, List.Items.Count, CurrentPage, PageSize, $"{Request.Path.ToString()}?filter={Filter}");
         public async Task OnGetAsync()
         {
-            List = await AppService.GetListAsync(new PagedAndSortedResultRequestDto()
+            List = await AppService.GetListAsync(new PruebaFilterInput()
             {
                 Sorting = "id desc",
                 MaxResultCount = PageSize,
-                // menos 1 porque inicia la pagina en 0
-                SkipCount = PageSize * (CurrentPage - 1),
-                // TODO: add filter
+                SkipCount = PageSize * (CurrentPage - 1),                 // menos 1 porque inicia la pagina en 0
+                Filter = Filter
             });
         }
     }

@@ -16,6 +16,7 @@ namespace Washyn.Web.TagHelpers
     //     </span>
     // </div>
     
+    // TODO: add model builder
     [HtmlTargetElement("wsh-search-input", TagStructure = TagStructure.WithoutEndTag)]
     public class CompositeSearchInput : TagHelper
     {

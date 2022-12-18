@@ -8,13 +8,9 @@
 
 <div class="card">
     <div class="card-body">
-        
-        @* TODO: fix search query string *@
         @* can be set search button as submit and input event submit *@
         <form>
-            @* TODO: improve for show in paginate *@
             <wsh-search-input value="@Model.Filter"/>
-            can be add as hidden there other query string fields
         </form>
         <br>
         
@@ -35,8 +31,6 @@
             }
             </tbody>
         </table>
-
-        @* ver que args necesita esto en el input de get  *@
         <abp-paginator model="Model.PagerModelInfo" show-info="true"/>
     </div>
 </div>
