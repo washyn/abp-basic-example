@@ -64,6 +64,7 @@
                     theme: 'bootstrap-5',
                     // Improvement: check if can be improve this.
                     language: abp.localization.currentCulture.name,
+                    // improve adding rtl config there
                     allowClear: true,
                     placeholder: { id: "", text: "" },
                 });
