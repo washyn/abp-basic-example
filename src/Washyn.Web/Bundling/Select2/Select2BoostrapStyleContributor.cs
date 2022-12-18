@@ -12,7 +12,14 @@ namespace Washyn.Web.Bundling.Select2
     {
         public override void ConfigureBundle(BundleConfigurationContext context)
         {
-            context.Files.AddIfNotContains("/libs/select2-bootstrap4-theme/dist/select2-bootstrap4.css");
+            if (CultureHelper.IsRtl)
+            {
+                context.Files.AddIfNotContains("/libs/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.rtl.css");
+            }
+            else
+            {
+                context.Files.AddIfNotContains("/libs/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.css");
+            }
         }
     }
 }

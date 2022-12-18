@@ -14,8 +14,12 @@
                 var itemsPropertyName = $(this).data("autocompleteItemsProperty");
                 var filterParamName = $(this).data("autocompleteFilterParamName");
                 var selectedText = $(this).data("autocompleteSelectedItemName");
+                var parentSelector = $(this).data("autocompleteParentSelector");
+                if(!parentSelector && $select.parents(".modal.fade").length === 1){
+                    parentSelector = ".modal.fade";
+                }
                 var name = $(this).attr("name");
-                var selectedTextInputName = name.substring(0, name.length - 1) + "_Text]";
+                var selectedTextInputName = name + "_Text";
                 var selectedTextInput = $('<input>', {
                     type: 'hidden',
                     id: selectedTextInputName,
@@ -55,8 +59,9 @@
                         }
                     },
                     width: '100%',
+                    dropdownParent: parentSelector ? $(parentSelector) : $('body'),
                     // pr for configure theme and lang
-                    theme: 'bootstrap4',
+                    theme: 'bootstrap-5',
                     // Improvement: check if can be improve this.
                     language: abp.localization.currentCulture.name,
                     allowClear: true,
