@@ -4,8 +4,9 @@ This is one soluction create fron scractc about example of use abp framework as 
 ## TODO:
 - Agregar Ejemplo de domain service, test
 - add js and css contributor for boostrap 4 and example for 5 (use rtl)
-  - check if this is RTL
-  - change select2 default options for sleep time when write
+
+    - change select2 default options for sleep time when write, and combine with abp tag helper plus options in same version.
+    - for bootstrap 5 check if this is RTL
 
 
 - Test this in web module after configure abp localizations and test from frontend
@@ -22,7 +23,7 @@ context.Services.Configure<RequestLocalizationOptions>(options =>
 - Test
   - Add manger service and test this.
   - Disable proxy generation, for all by default and only add this with RemoteService decorator.
-  - Add localization for select2
+  
 ## DONE
 - Agregar data seeder
 - Agregar crud basico
@@ -37,6 +38,7 @@ context.Services.Configure<RequestLocalizationOptions>(options =>
 - Add crud of in basic theme, razor pages
 - Add localization json
 - Agregar ejemplos de test en todas las capas
+- Add localization for select2
 
 ## Screenshots
 
