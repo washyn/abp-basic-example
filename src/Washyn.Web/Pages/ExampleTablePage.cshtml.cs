@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NUglify.Helpers;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,13 +40,12 @@ namespace Washyn.Web.Pages
         [Inject]
         public ILogger<ExampleTablePage> Logger { get; set; }
 
+        
         [BindProperty(SupportsGet = true)]
         public int CurrentPage { get; set; } = 1;
         
         [BindProperty(SupportsGet = true)]
-        public string Filter { get; set; } = string.Empty;
-
-        public string CustomQueryString { get; set; } = string.Empty;
+        public string Filter { get; set; }
         
         public PagedResultDto<PruebaDto> List { get; set; }
         public const int PageSize = 2;
