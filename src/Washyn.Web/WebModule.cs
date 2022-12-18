@@ -85,7 +85,7 @@ namespace Washyn.Web
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("es-pe", "es-pe", "Español Peru"));
+                // options.Languages.Add(new LanguageInfo("es-pe", "es-pe", "Español Peru"));
                 options.Languages.Add(new LanguageInfo("es", "es", "Español"));
             });
         }

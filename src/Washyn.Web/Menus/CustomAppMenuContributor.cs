@@ -16,6 +16,8 @@ namespace Washyn.Web.Menus
         private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
         {
             context.Menu.AddItem(new ApplicationMenuItem("MENU", "Crud display", "/Crud"));
+            context.Menu.AddItem(new ApplicationMenuItem("MENU", "Example table page", "/ExampleTablePage"));
+            context.Menu.AddItem(new ApplicationMenuItem("MENU", "Example select", "/ExampleSelect2"));
             // context.Menu.AddItem(new ApplicationMenuItem("TEST", "Test page", "/TestPage", icon:"plus"));
             // context.Menu.AddItem(new ApplicationMenuItem("TEST", "Test page", "/TestPage", icon:"plus"));
         }

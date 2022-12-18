@@ -2,7 +2,7 @@
 
 namespace Washyn.Application
 {
-    public interface IPruebaAppService : ICrudAppService<PruebaDto, long>
+    public interface IPruebaAppService : ICrudAppService<PruebaDto, long, PruebaFilterInput>
     {
         
     }
