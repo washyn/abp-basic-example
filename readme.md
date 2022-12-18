@@ -3,7 +3,7 @@ This is one soluction create fron scractc about example of use abp framework as 
 
 ## TODO:
 - Agregar Ejemplo de domain service, test
-
+- add js and css contributor for boostrap 4 and example for 5 (use rtl)
 
 - Test this in web module after configure abp localizations and test from frontend
 ```csharp

@@ -1,0 +1,30 @@
+﻿@page
+@model Washyn.Web.Pages.ExampleSelect2
+
+@{
+    // Layout = null;
+}
+
+
+@* TODO: add js and css contributor for boostrap 4 and example for 5 *@
+@* check if this is RTL *@
+@* change select2 default options for sleep time when write*@
+
+<div class="card">
+    <div class="card-body">
+        <form action="">
+            <select asp-for="Prueba.Id" 
+                    class="auto-complete-select"
+                    multiple="multiple"
+                    data-autocomplete-api-url="/api/app/prueba"
+                    data-autocomplete-display-property="nombre"
+                    data-autocomplete-value-property="id"
+                    data-autocomplete-items-property="items"
+                    data-autocomplete-filter-param-name="filter">
+            
+                <!-- You can define selected option(s) here  -->
+                <option selected value="@Model.Prueba.Id">@Model.Prueba.Nombre</option>
+            </select>
+        </form>
+    </div>
+</div>
