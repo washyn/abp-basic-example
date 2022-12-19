@@ -20,7 +20,7 @@
 }
 
 <div class="card">
-    <div class="card-body">
+    <div class="card-body" id="cardIdentifier">
         <form action="">
             @*  *@
             <select asp-for="Prueba.Id"
@@ -35,6 +35,17 @@
                 @* <option selected value="@Model.Prueba.Id">@Model.Prueba.Nombre</option> *@
             </select>
         </form>
+        
+        <hr>
+        
+        <form action="">
+            <select class="form-select" id="exampleManualSelect" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </form>
+        
     </div>
 </div>
-

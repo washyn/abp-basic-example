@@ -3,7 +3,6 @@ This is one soluction create fron scractc about example of use abp framework as 
 
 ## TODO:
 - Agregar Ejemplo de domain service, test
-- fix when select2 open autofocus
 
 - Test this in web module after configure abp localizations and test from frontend
 ```csharp
@@ -38,7 +37,7 @@ context.Services.Configure<RequestLocalizationOptions>(options =>
 -  Select 2 add js and css contributor for boostrap 4 and example for 5 (use rtl)
     - change select2 default options for sleep time when write, and combine with abp tag helper plus options in same version.
     - for bootstrap 5 check if this is RTL
-    
+- fix when select2 open autofocus
 ## Screenshots
 
 ![alt](/images/screencapture-localhost-5001-2022-11-16-19_54_57.png)
