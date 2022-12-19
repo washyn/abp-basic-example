@@ -13,6 +13,7 @@ namespace Washyn.Web.Bundling.Select2
         public override void ConfigureBundle(BundleConfigurationContext context)
         {
             context.Files.AddIfNotContains("/js/dom-event-handler-bootstrap.js");
+            context.Files.AddIfNotContains("/js/select2-autofocus-fix.js");
         }
         
         public override void ConfigureDynamicResources(BundleConfigurationContext context)

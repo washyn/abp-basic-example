@@ -55,9 +55,7 @@
                         }
                     },
                     width: '100%',
-                    // pr for configure theme and lang
                     theme: 'bootstrap4',
-                    // Improvement: check if can be improve this.
                     language: abp.localization.currentCulture.name,
                     allowClear: true,
                     placeholder: { id: "", text: "" },
