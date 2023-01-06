@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>9</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="compilerconfig.json;package.json"/>
+    <None Include="compilerconfig.json;package.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
