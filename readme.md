@@ -4,17 +4,6 @@ This is one soluction create fron scractc about example of use abp framework as 
 ## TODO:
 - Agregar Ejemplo de domain service, test
 
-
-- Test this in web module after configure abp localizations and test from frontend
-```csharp
-// test this...
-context.Services.Configure<RequestLocalizationOptions>(options =>
-{
-  options.DefaultRequestCulture = new RequestCulture("es-pe");
-});
-```
-
-
 ## Improvement
 - Test
   - Add manger service and test this.
