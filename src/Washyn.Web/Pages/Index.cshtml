@@ -55,6 +55,29 @@
             @(L["KeyLocalizationExample"])
         </p>
         
+        
+        <hr>
+        
+        <div>
+            @if (HttpContext.User.Identity != null && HttpContext.User.Identity.IsAuthenticated)
+            {
+                <a href="/logout" class="btn btn-outline-secondary">Logout</a>
+            }
+            else
+            {
+                <a href="/login" class="btn btn-outline-secondary">Login</a>
+            }
+        </div>
+        
+        <hr>
+        <h3>Claims</h3>
+        <ul>
+            @foreach (var iten in HttpContext.User.Claims)
+            {
+                <li><strong>@iten.Type : </strong> @iten.Value </li>
+            }
+        </ul>
+        
     </abp-card-body>
     <abp-card-footer>
         test footer

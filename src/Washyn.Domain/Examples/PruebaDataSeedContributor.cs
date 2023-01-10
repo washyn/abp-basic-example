@@ -17,9 +17,9 @@ namespace Washyn.Domain.Examples
         public async Task SeedAsync(DataSeedContext context)
         {
             var record = new Prueba(1, "Dato desde seeder");
-            if (! await ExistRecord(record.Nombre))
+            // if (! await ExistRecord(record.Nombre))
             {
-                await _pruebaRepository.InsertAsync(record);
+                await _pruebaRepository.InsertAsync(record, true);
             }
         }
 

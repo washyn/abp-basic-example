@@ -1,0 +1,22 @@
+﻿@page
+@model Washyn.Web.Pages.Login
+
+@{
+    // Layout = null;
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-card-title>
+            Login
+        </abp-card-title>
+    </abp-card-header>
+    <abp-card-body>
+        @* todo: fix page handler for redirect rigth way *@
+        <form method="post">
+            <abp-input asp-for="Model.UserName"></abp-input>
+            <abp-input asp-for="Model.Password"></abp-input>
+            <abp-button text="Login" size="Block" button-type="Outline_Primary" type="submit"></abp-button>
+        </form>
+    </abp-card-body>
+</abp-card>

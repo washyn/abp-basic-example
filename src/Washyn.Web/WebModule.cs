@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
@@ -54,6 +55,15 @@ namespace Washyn.Web
             {
                 options.Kind = DateTimeKind.Utc;
             });
+            
+            context.Services
+                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/login";
+                    options.LogoutPath = "/logout";
+                    options.AccessDeniedPath = "/AccessDenied";
+                });
             
             ConfigureAutoApiControllers();
             ConfigureVirtualFileSystem(hostingEnvironment);
@@ -139,9 +149,15 @@ namespace Washyn.Web
             
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
+            
             app.UseRouting();
+            
             app.UseAbpSerilogEnrichers();
+            
+            app.UseAuthentication();
+            app.UseAuthorization();
+            
             app.UseConfiguredEndpoints();
         }
     }

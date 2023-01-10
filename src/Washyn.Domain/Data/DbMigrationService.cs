@@ -13,7 +13,6 @@ using Volo.Abp.DependencyInjection;
 namespace Washyn.Domain.Data
 {
     public class DbMigrationService : ITransientDependency
-        // , IDbSchemaMigrator
     {
         private readonly IEnumerable<IDbSchemaMigrator> _schemaMigrators;
         private readonly IDataSeeder _dataSeeder;
