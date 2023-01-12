@@ -4,7 +4,7 @@ using Washyn.Domain.Identity;
 
 namespace Washyn.Web.Pages.Crud
 {
-    [Authorize(Roles = RolConsts.User)]
+    [Authorize(Roles = RolConsts.Admin)]
     public class Index : PageModel
     {
         public void OnGet()
