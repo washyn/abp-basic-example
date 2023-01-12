@@ -8,7 +8,7 @@ This is one soluction create fron scractc about example of use abp framework as 
 - Test
   - Add manger service and test this.
   - Disable proxy generation, for all by default and only add this with RemoteService decorator.
-
+- ix db migrator when create tables and seed initial data Cannot insert explicit value for identity column in table 'Pruebas' when IDENTITY_INSERT is set to OFF.
 ## DONE
 - Agregar data seeder
 - Agregar crud basico
