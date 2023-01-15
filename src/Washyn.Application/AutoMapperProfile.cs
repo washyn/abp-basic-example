@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Washyn.Application.Identity;
 using Washyn.Domain;
+using Washyn.Domain.Identity;
 
 namespace Washyn.Application
 {
@@ -8,6 +10,8 @@ namespace Washyn.Application
         public AutoMapperProfile()
         {
             CreateMap<Prueba, PruebaDto>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, CreateUserDto>().ReverseMap();
         }
     }
 }

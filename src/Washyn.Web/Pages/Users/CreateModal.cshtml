@@ -1,0 +1,25 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model Washyn.Web.Pages.Users.CreateModal
+
+@{
+    Layout = null;
+}
+
+<abp-modal size="Large">
+    <abp-modal-header title="Crear nuevo usuario"></abp-modal-header>
+    <form data-ajaxForm="true" asp-page="/Users/CreateModal">
+        <abp-modal-body>
+            <abp-input asp-for="Model.Name"></abp-input>
+            <abp-input asp-for="Model.Surname"></abp-input>
+            <abp-input asp-for="Model.Email"></abp-input>
+            <abp-input asp-for="Model.Password"></abp-input>
+            <abp-input asp-for="Model.IsActive"></abp-input>
+            <abp-input asp-for="Model.PhoneNumber"></abp-input>
+            <abp-input asp-for="Model.UserName"></abp-input>
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </form>
+</abp-modal>
