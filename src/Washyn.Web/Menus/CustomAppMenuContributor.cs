@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 
 namespace Washyn.Web.Menus
@@ -15,10 +17,17 @@ namespace Washyn.Web.Menus
         
         private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
         {
+            var serviceAuth = context.ServiceProvider.GetRequiredService<IHttpContextAccessor>();
+            var isAutenticated = serviceAuth.HttpContext != null && 
+                                 serviceAuth.HttpContext.User.Identity != null &&
+                                 serviceAuth.HttpContext != null &&
+                                 serviceAuth.HttpContext.User.Identity.IsAuthenticated;
+            
             context.Menu.AddItem(new ApplicationMenuItem("MENU", "Crud display", "/Crud"));
-            context.Menu.AddItem(new ApplicationMenuItem("MENU", "Usuarios", "/Users"));
-            // context.Menu.AddItem(new ApplicationMenuItem("TEST", "Test page", "/TestPage", icon:"plus"));
-            // context.Menu.AddItem(new ApplicationMenuItem("TEST", "Test page", "/TestPage", icon:"plus"));
+            if (isAutenticated)
+            {
+                context.Menu.AddItem(new ApplicationMenuItem("MENU", "Usuarios", "/Users"));
+            }
         }
     }
 }

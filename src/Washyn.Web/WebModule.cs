@@ -64,6 +64,8 @@ namespace Washyn.Web
                     options.LogoutPath = "/logout";
                     options.AccessDeniedPath = "/AccessDenied";
                 });
+
+            context.Services.AddHttpContextAccessor();
             
             ConfigureAutoApiControllers();
             ConfigureVirtualFileSystem(hostingEnvironment);
