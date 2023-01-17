@@ -8,29 +8,29 @@ namespace Washyn.Domain.Identity
 {
     public class User : Entity<int>
     {
-        public string UserName { get; }
+        public string UserName { get; internal set;}
 
         [CanBeNull]
-        public string Email { get; }
+        public string Email { get; set;}
 
         [CanBeNull]
-        public string Name { get; }
+        public string Name { get; set;}
 
         [CanBeNull]
-        public string Surname { get; }
+        public string Surname { get; set;}
 
-        public bool IsActive { get; }
+        public bool IsActive { get;  set;}
 
         [CanBeNull]
-        public string PhoneNumber { get; }
+        public string PhoneNumber { get; set;}
 
         /// <summary>
         /// Gets or sets a salted and hashed representation of the password for this user.
         /// </summary>
         [DisableAuditing]
-        public string PasswordHash { get; protected internal set; }
+        public string PasswordHash { get; internal set; }
 
-        public string RolName { get; set; }
+        public string RolName { get; internal set; }
 
         protected User()
         {
@@ -52,6 +52,11 @@ namespace Washyn.Domain.Identity
                 throw new ArgumentException($"Rol value only be set as {RolConsts.Admin} or {RolConsts.User}");
             }
             RolName = rolName;
+        }
+        
+        public void SetPassword(string passwordHash)
+        {
+            PasswordHash = Check.NotNullOrEmpty(passwordHash, nameof(passwordHash));
         }
     }
 }

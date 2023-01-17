@@ -13,6 +13,9 @@ namespace Washyn.EntityFrameworkCore
             {
                 b.ConfigureByConvention(); //auto configure for the base class props
                 
+                // TODO: fix default value for is active field, when set to false in insert, this set to true
+                // .HasDefaultValue(true)
+                
                 b.Property(x => x.UserName)
                     .IsRequired()
                     .HasMaxLength(UserConsts.MaxLength);
@@ -23,8 +26,7 @@ namespace Washyn.EntityFrameworkCore
                 b.Property(a => a.Surname)
                     .HasMaxLength(UserConsts.MaxLength);
                 b.Property(a => a.IsActive)
-                    .IsRequired()
-                    .HasDefaultValue(true);
+                    .IsRequired();
                 b.Property(a => a.PhoneNumber)
                     .HasMaxLength(UserConsts.MaxLength);
                 b.Property(a => a.PasswordHash)
@@ -34,10 +36,10 @@ namespace Washyn.EntityFrameworkCore
                 
                 // b.HasKey(f => f.Id);
                 // set IsUnique
-                b.HasIndex(f => f.UserName);
-                
-                b.HasKey(ent => ent.Id);
-                b.Property(ent => ent.Id).ValueGeneratedNever();
+                // b.HasIndex(f => f.UserName);
+                //
+                // b.HasKey(ent => ent.Id);
+                // b.Property(ent => ent.Id).ValueGeneratedNever();
             });
             
             modelBuilder.Entity<Prueba>(b =>

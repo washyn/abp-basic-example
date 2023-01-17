@@ -70,17 +70,7 @@ namespace Washyn.Web.Pages
                 var encriptedPassword = EncryptionService.Encrypt(Model.Password);
                 if (encriptedPassword == user.PasswordHash)
                 {
-                    var claims = new List<Claim>();
-                    claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
-                    claims.Add(new Claim(ClaimTypes.Name, user.UserName));
-                    claims.Add(new Claim(ClaimTypes.Role, user.RolName));
-                    var identityClaim = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var claimsPrincipal = new ClaimsPrincipal(identityClaim);
-                    var authProps = new AuthenticationProperties()
-                    {
-                        ExpiresUtc = DateTime.Now.AddMinutes(10)
-                    };
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, authProps);
+                    await ExecLogin(user);
                     if (string.IsNullOrEmpty(ReturnUrl))
                     {
                         return Redirect("/");
@@ -93,6 +83,21 @@ namespace Washyn.Web.Pages
             }
             Alerts.Add(new AlertMessage(AlertType.Danger, "Add required fields."));
             return Page();
+        }
+
+        private async Task ExecLogin(User user)
+        {
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+            claims.Add(new Claim(ClaimTypes.Name, user.UserName));
+            claims.Add(new Claim(ClaimTypes.Role, user.RolName));
+            var identityClaim = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var claimsPrincipal = new ClaimsPrincipal(identityClaim);
+            var authProps = new AuthenticationProperties()
+            {
+                ExpiresUtc = DateTime.Now.AddMinutes(100)
+            };
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, authProps);
         }
     }
     
