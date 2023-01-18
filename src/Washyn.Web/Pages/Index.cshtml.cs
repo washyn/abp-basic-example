@@ -17,11 +17,6 @@ namespace Washyn.Web.Pages
         public string Others { get; set; }
         public string WindowsFormat { get; set; }
         
-        // TODO:
-        // improve current user accesor for use only one accesor, puede ser el ICurrentUser o alguno otro que sea mas personalizable.
-        [Inject]
-        public ICustomCurrentUser CustomCurrentUser { get; set; }
-        
         [Inject]
         public IExtraPropCurrentUser ExtraPropCurrentUser { get; set; }
         

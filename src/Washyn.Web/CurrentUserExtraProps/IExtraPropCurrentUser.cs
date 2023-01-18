@@ -7,6 +7,10 @@ namespace Washyn.Web.CurrentUserExtraProps
 {
     public interface IExtraPropCurrentUser : ICurrentUser
     {
-        new int? Id { get; }
+        [Obsolete]
+        [CanBeNull]
+        Guid? Id { get; }
+        
+        int? UserId { get; }
     }
 }
