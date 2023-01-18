@@ -11,6 +11,7 @@ using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
@@ -62,6 +63,7 @@ namespace Washyn.Web
                 options.AddMaps<WebModule>();
             });
             
+            
             context.Services
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
@@ -77,10 +79,25 @@ namespace Washyn.Web
             ConfigureVirtualFileSystem(hostingEnvironment);
             ConfigureLocalizationServices();
             ConfigureNavigationServices();
+            ConfigureBundles();
         }
 
         #region Configurations
 
+        private void ConfigureBundles()
+        {
+            Configure<AbpBundlingOptions>(options =>
+            {
+                options.ScriptBundles.Configure(
+                    BasicThemeBundles.Scripts.Global,
+                    bundle =>
+                    {
+                        bundle.AddFiles("/js/site.js");
+                    }
+                );
+            });
+        }
+        
         private void ConfigureAutoApiControllers()
         {
             Configure<AbpAspNetCoreMvcOptions>(options =>

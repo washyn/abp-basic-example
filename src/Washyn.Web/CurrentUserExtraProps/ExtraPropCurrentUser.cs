@@ -11,25 +11,33 @@ using Volo.Abp.Security.Claims;
 
 namespace Washyn.Web.CurrentUserExtraProps
 {
+    
     [Dependency(ReplaceServices = true)]
     public class ExtraPropCurrentUser : CurrentUser, IExtraPropCurrentUser
     {
         public ExtraPropCurrentUser(ICurrentPrincipalAccessor principalAccessor) : base(principalAccessor)
         {
         }
-
-        public virtual bool IsAuthenticated => UserId.HasValue;
         
-        public int? FindUserIdentifier()
+        // TODO: replace abp settings gender, and use this.
+        public override bool IsAuthenticated => Id.HasValue;
+        
+        public int? Id => FindUserIdentifier();
+
+        private int? FindUserIdentifier()
         {
-            var res = this.FindClaimValue<int>(ClaimTypes.NameIdentifier);
-            if (res == default)
+            var res = this.FindClaimValue(ClaimTypes.NameIdentifier);
+            
+            if (res == null || res.IsNullOrWhiteSpace())
             {
                 return null;
             }
-            return res;
+            if (int.TryParse(res, out int id))
+            {
+                return id;
+            }
+
+            return null;
         }
-        
-        public int? UserId => FindUserIdentifier();
     }
 }
