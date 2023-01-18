@@ -23,7 +23,12 @@ namespace Washyn.Domain.Identity
         public async Task SeedAsync(DataSeedContext context)
         {
             var passwordHashed = _stringEncryptionService.Encrypt("chester");
-            var admin = new User("chester", passwordHashed, RolConsts.Admin);
+            var admin = new User("chester", passwordHashed, RolConsts.Admin)
+            {
+                Email = "chester@gmail.com",
+                Name = "Chester",
+                Surname = "Surname",
+            };
             
             // if (!await _userRepository.AnyAsync(user => user.UserName == admin.UserName))
             {

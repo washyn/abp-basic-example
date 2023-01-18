@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
 using TimeZoneNames;
 using Volo.Abp.AspNetCore.Mvc.UI.Alerts;
 using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
+using Volo.Abp.Users;
 
 namespace Washyn.Web.Pages
 {
@@ -13,6 +15,13 @@ namespace Washyn.Web.Pages
         public List<string> TimeZoneIds { get; set; }
         public string Others { get; set; }
         public string WindowsFormat { get; set; }
+        
+        [Inject]
+        public ICustomCurrentUser CustomCurrentUser { get; set; }
+        
+        [Inject]
+        public ICurrentUser CurrentUser { get; set; }
+        
         public void OnGet()
         {
             #region Alerts

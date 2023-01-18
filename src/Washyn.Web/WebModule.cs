@@ -14,6 +14,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
+using Volo.Abp.AutoMapper;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.Timing;
@@ -54,6 +55,11 @@ namespace Washyn.Web
             Configure<AbpClockOptions>(options =>
             {
                 options.Kind = DateTimeKind.Utc;
+            });
+            
+            Configure<AbpAutoMapperOptions>(options =>
+            {
+                options.AddMaps<WebModule>();
             });
             
             context.Services

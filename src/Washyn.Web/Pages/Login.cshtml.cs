@@ -88,9 +88,21 @@ namespace Washyn.Web.Pages
         private async Task ExecLogin(User user)
         {
             var claims = new List<Claim>();
+            
             claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
             claims.Add(new Claim(ClaimTypes.Name, user.UserName));
             claims.Add(new Claim(ClaimTypes.Role, user.RolName));
+            claims.Add(new Claim(ClaimTypes.Email, user.Email));
+            claims.Add(new Claim(ClaimTypes.Surname, user.Surname));
+            claims.Add(new Claim(ClaimTypes.GivenName, user.Name));
+            
+            // claims.Add(new Claim(Volo.Abp.Security.Claims.AbpClaimTypes.UserId, user.Id.ToString()));
+            // claims.Add(new Claim(Volo.Abp.Security.Claims.AbpClaimTypes.UserName, user.UserName));
+            // claims.Add(new Claim(Volo.Abp.Security.Claims.AbpClaimTypes.Role, user.RolName));
+            // claims.Add(new Claim(Volo.Abp.Security.Claims.AbpClaimTypes.Email, user.Email));
+            // claims.Add(new Claim(Volo.Abp.Security.Claims.AbpClaimTypes.SurName, user.Surname));
+            // claims.Add(new Claim(Volo.Abp.Security.Claims.AbpClaimTypes.Name, user.Name));
+            
             var identityClaim = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var claimsPrincipal = new ClaimsPrincipal(identityClaim);
             var authProps = new AuthenticationProperties()
