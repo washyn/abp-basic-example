@@ -1,5 +1,6 @@
 ﻿using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
+using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 
 namespace Washyn.AdminLteTheme.Bundling
@@ -9,11 +10,9 @@ namespace Washyn.AdminLteTheme.Bundling
     {
         public override void ConfigureBundle(BundleConfigurationContext context)
         {
-            base.ConfigureBundle(context);
-            // Check how this works best
-            // boostrap sobreescribe detalles de ui del adminlte
-            // context.Files.Remove("/libs/bootstrap/css/bootstrap.css");
-            // add style for alert
+            context.Files.RemoveAll(x => x == (CultureHelper.IsRtl
+                ? "/libs/bootstrap/css/bootstrap.rtl.css"
+                : "/libs/bootstrap/css/bootstrap.css"));
         }
     }
 }

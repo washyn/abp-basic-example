@@ -31,7 +31,7 @@ namespace Washyn.Internet.Menus
                 )
             );
             
-            if (false)
+            if (true)
             {
                 administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);
             }

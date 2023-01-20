@@ -1,8 +1,10 @@
 ﻿@page
+@using Volo.Abp.AspNetCore.Mvc.UI.Theming
 @model Washyn.AdminLteTheme.Pages.Index
+@inject IThemeManager ThemeManager
 
 @{
-    // Layout = null;
+    // Layout = ThemeManager.CurrentTheme.GetPublicLayout();
 }
 
 

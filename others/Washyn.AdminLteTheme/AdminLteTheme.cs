@@ -10,7 +10,6 @@ namespace Washyn.AdminLteTheme
 
         public string GetLayout(string name, bool fallbackToDefault = true)
         {
-            // AdminLteEmptyLayout
             switch (name)
             {
                 case StandardLayouts.Application:
@@ -20,7 +19,7 @@ namespace Washyn.AdminLteTheme
                 case StandardLayouts.Empty:
                     return "~/Themes/AdminLte/Layouts/Empty.cshtml";
                 case StandardLayouts.Public:
-                    return "~/Themes/AdminLte/Layouts/Empty.cshtml";
+                    return "~/Themes/AdminLte/Layouts/Public.cshtml";
                 case "AdminLteEmptyLayout":
                     return "~/Themes/AdminLte/Layouts/AdminLteEmptyLayout.cshtml";
                 

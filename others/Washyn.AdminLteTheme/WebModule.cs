@@ -197,7 +197,7 @@ namespace Washyn.AdminLteTheme
         {
             Configure<AbpMultiTenancyOptions>(options =>
             {
-                options.IsEnabled = false;
+                options.IsEnabled = true;
             });
         }
 
@@ -359,7 +359,7 @@ namespace Washyn.AdminLteTheme
             app.UseAuthentication();
             app.UseJwtTokenMiddleware();
 
-            if (false)
+            if (true)
             {
                 app.UseMultiTenancy();
             }
