@@ -61,10 +61,9 @@
                     width: '100%',
                     dropdownParent: parentSelector ? $(parentSelector) : $('body'),
                     // pr for configure theme and lang
+                    // improve adding rtl config there, rtl works with, lang
                     theme: 'bootstrap-5',
-                    // Improvement: check if can be improve this.
-                    language: abp.localization.currentCulture.name,
-                    // improve adding rtl config there
+                    language: abp.localization.currentCulture.cultureName ?? "en",
                     allowClear: true,
                     placeholder: { id: "", text: "" },
                 });
