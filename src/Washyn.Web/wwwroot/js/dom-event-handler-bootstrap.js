@@ -56,7 +56,7 @@
                     },
                     width: '100%',
                     theme: 'bootstrap4',
-                    language: abp.localization.currentCulture.name,
+                    language: abp.localization.currentCulture.cultureName ?? "en",
                     allowClear: true,
                     placeholder: { id: "", text: "" },
                 });
