@@ -19,6 +19,8 @@ namespace Washyn.AdminLteTheme
                     return "~/Themes/AdminLte/Layouts/Account.cshtml";
                 case StandardLayouts.Empty:
                     return "~/Themes/AdminLte/Layouts/Empty.cshtml";
+                case StandardLayouts.Public:
+                    return "~/Themes/AdminLte/Layouts/Empty.cshtml";
                 case "AdminLteEmptyLayout":
                     return "~/Themes/AdminLte/Layouts/AdminLteEmptyLayout.cshtml";
                 
